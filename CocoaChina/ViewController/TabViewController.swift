@@ -17,7 +17,12 @@ class TabViewController: UITabBarController {
 
         // Do any additional setup after loading the view.
         let mainView = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewmain") as! MainViewController
-        self.viewControllers = [mainView]
+        mainView.pageType = .Main
+        let newView = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewmain") as! MainViewController
+        newView.pageType = .New
+        newView.tabItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.MostRecent, tag: 0)
+
+        self.viewControllers = [mainView,newView]
     }
 
     override func didReceiveMemoryWarning() {

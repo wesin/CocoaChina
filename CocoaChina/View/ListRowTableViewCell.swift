@@ -12,4 +12,5 @@ class ListRowTableViewCell: UITableViewCell {
     @IBOutlet weak var labelTime: UILabel!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imgTitle: UIImageView!
+    @IBOutlet weak var labelClick: UILabel!
 }

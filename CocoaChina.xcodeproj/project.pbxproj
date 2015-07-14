@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3CFB6D1B54BF36005E40D3 /* PageDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3CFB6C1B54BF36005E40D3 /* PageDataCenter.swift */; };
+		0A3CFB6F1B54C32D005E40D3 /* alldata.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A3CFB6E1B54C32D005E40D3 /* alldata.js */; };
 		0A43E5311B4F774D001735FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5301B4F774D001735FF /* AppDelegate.swift */; };
 		0A43E5361B4F774D001735FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5341B4F774D001735FF /* Main.storyboard */; };
 		0A43E5381B4F774D001735FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5371B4F774D001735FF /* Images.xcassets */; };
@@ -71,6 +73,9 @@
 		0A43E5D41B4FA3AC001735FF /* ListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5D31B4FA3AC001735FF /* ListRowTableViewCell.swift */; };
 		0A43E5D81B4FC983001735FF /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5D71B4FC983001735FF /* main.js */; };
 		0A43E5DB1B4FCD38001735FF /* DataContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5DA1B4FCD38001735FF /* DataContent.swift */; };
+		0A43E5DD1B536F53001735FF /* detail.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5DC1B536F53001735FF /* detail.js */; };
+		0A43E5DF1B536FC5001735FF /* CocoaCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5DE1B536FC5001735FF /* CocoaCommon.swift */; };
+		0A43E5E11B53A6A6001735FF /* new.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5E01B53A6A6001735FF /* new.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3CFB6C1B54BF36005E40D3 /* PageDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageDataCenter.swift; sourceTree = "<group>"; };
+		0A3CFB6E1B54C32D005E40D3 /* alldata.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = alldata.js; sourceTree = "<group>"; };
 		0A43E52B1B4F774D001735FF /* CocoaChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A43E52F1B4F774D001735FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A43E5301B4F774D001735FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +168,9 @@
 		0A43E5D31B4FA3AC001735FF /* ListRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRowTableViewCell.swift; sourceTree = "<group>"; };
 		0A43E5D71B4FC983001735FF /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		0A43E5DA1B4FCD38001735FF /* DataContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataContent.swift; sourceTree = "<group>"; };
+		0A43E5DC1B536F53001735FF /* detail.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = detail.js; sourceTree = "<group>"; };
+		0A43E5DE1B536FC5001735FF /* CocoaCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaCommon.swift; sourceTree = "<group>"; };
+		0A43E5E01B53A6A6001735FF /* new.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = new.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +406,9 @@
 		0A43E5D61B4FC983001735FF /* js */ = {
 			isa = PBXGroup;
 			children = (
+				0A3CFB6E1B54C32D005E40D3 /* alldata.js */,
+				0A43E5E01B53A6A6001735FF /* new.js */,
+				0A43E5DC1B536F53001735FF /* detail.js */,
 				0A43E5D71B4FC983001735FF /* main.js */,
 			);
 			path = js;
@@ -405,6 +418,8 @@
 			isa = PBXGroup;
 			children = (
 				0A43E5DA1B4FCD38001735FF /* DataContent.swift */,
+				0A43E5DE1B536FC5001735FF /* CocoaCommon.swift */,
+				0A3CFB6C1B54BF36005E40D3 /* PageDataCenter.swift */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -489,7 +504,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3CFB6F1B54C32D005E40D3 /* alldata.js in Resources */,
 				0A43E5D21B4FA228001735FF /* ListRowCell.xib in Resources */,
+				0A43E5E11B53A6A6001735FF /* new.js in Resources */,
+				0A43E5DD1B536F53001735FF /* detail.js in Resources */,
 				0A43E5361B4F774D001735FF /* Main.storyboard in Resources */,
 				0A43E53B1B4F774D001735FF /* LaunchScreen.xib in Resources */,
 				0A43E5381B4F774D001735FF /* Images.xcassets in Resources */,
@@ -519,6 +537,7 @@
 				0A43E5921B4F9776001735FF /* BackInputView.swift in Sources */,
 				0A43E5B81B4F9776001735FF /* NSString+Base64.m in Sources */,
 				0A43E5AB1B4F9776001735FF /* Expression.swift in Sources */,
+				0A43E5DF1B536FC5001735FF /* CocoaCommon.swift in Sources */,
 				0A43E5B21B4F9776001735FF /* Size.swift in Sources */,
 				0A43E59F1B4F9776001735FF /* StringExtension.swift in Sources */,
 				0A43E59B1B4F9776001735FF /* CalculateFunc.swift in Sources */,
@@ -531,6 +550,7 @@
 				0A43E5CD1B4F9836001735FF /* WKDetailViewController.swift in Sources */,
 				0A43E5B01B4F9776001735FF /* Priority.swift in Sources */,
 				0A43E5A91B4F9776001735FF /* Edge.swift in Sources */,
+				0A3CFB6D1B54BF36005E40D3 /* PageDataCenter.swift in Sources */,
 				0A43E5DB1B4FCD38001735FF /* DataContent.swift in Sources */,
 				0A43E5B91B4F9776001735FF /* NSString+Encrypto.m in Sources */,
 				0A43E5CB1B4F9820001735FF /* DetailViewController.swift in Sources */,
@@ -773,6 +793,7 @@
 				0A43E54C1B4F774D001735FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A43E54D1B4F774D001735FF /* Build configuration list for PBXNativeTarget "CocoaChinaTests" */ = {
 			isa = XCConfigurationList;
@@ -781,6 +802,7 @@
 				0A43E54F1B4F774D001735FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,7 +10,21 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var content:DataContent?
+    
+    @IBOutlet weak var navItem: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navItem.title = content?.title
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let webView = segue.destinationViewController as! WKDetailViewController
+        webView.url = content!.url
+        
+    }
+    
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

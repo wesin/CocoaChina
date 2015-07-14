@@ -13,11 +13,14 @@ struct DataContent {
     var url = ""
     var time = ""
     var imgurl = ""
+    var click = ""
     
     init(contentObj:[String:AnyObject]) {
         self.title = contentObj["title"] as? String ?? ""
         self.url = contentObj["url"] as? String ?? ""
         self.time = contentObj["time"] as? String ?? ""
         self.imgurl = contentObj["imgurl"] as? String ?? ""
+        self.click = contentObj["click"] as? String ?? ""
     }
 }
+

@@ -7,72 +7,48 @@
 //
 
 import UIKit
-import WebKit
 
-class MainViewController:UIViewController, UITableViewDataSource, UITableViewDelegate,WKScriptMessageHandler,WKNavigationDelegate {
+enum ListType:Int {
+    case Main = 0
+    case New = 1
+    case Special = 2
+    case Hotpost = 3
+    case Search = 4
+}
+
+class MainViewController:ListCommonViewController, HPSwitchDelegate {
     
+    @IBOutlet weak var switchSeg: HPSwitch!
     
     @IBOutlet weak var tableMain: UITableView!
-    let messageHander = "mainhandler"
     
-    var dataSource:[DataContent]?
+    var url = "http://www.cocoachina.com"
+    var pageType = ListType.Main
+    
+    @IBOutlet weak var tabItem: UITabBarItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        switchSeg.arrayTitle = ["推荐", "最新", "专题", "热帖", "搜索"]
+        switchSeg.delegate = self
+        tableMain.contentInset = UIEdgeInsetsMake(2.5, 0, 0, 0)
         tableMain.registerNib(UINib(nibName: "ListRowCell", bundle: nil), forCellReuseIdentifier: "listrowcell")
-        getDataSource()
+        dataSource = PageDataCenter.instance.dataAll[ListType.Main]
     }
     
     @IBAction func showLeading(sender: AnyObject) {
         
     }
     
-    //MARK:UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource?.count ?? 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("listrowcell", forIndexPath: indexPath) as! ListRowTableViewCell
-        let content = dataSource![indexPath.row]
-        if let url = NSURL(string: content.imgurl) {
-            if let data = NSData(contentsOfURL: url) {
-                cell.imgTitle.image = UIImage(data: data)
-            }
-        }
-        cell.labelTitle.text = content.title
-        return cell
-    }
-    
-    //MARK:WKScriptMessageHandler
-    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
-        dataSource = [DataContent]()
-        if message.name == messageHander {
-            if let contentLst = message.body as? [[String:AnyObject]] {
-                contentLst.map({
-                    self.dataSource?.append(DataContent(contentObj: $0))
-                })
-            }
-        }
+    override func refreshView() {
         tableMain.reloadData()
     }
     
-    //MARK:Private 
-    private func getDataSource() {
-        let config = WKWebViewConfiguration()
-        let scriptURL = NSBundle.mainBundle().pathForResource("main", ofType: "js")
-        let scriptContent = String(contentsOfFile:scriptURL!, encoding:NSUTF8StringEncoding, error: nil)
-        let script = WKUserScript(source: scriptContent!, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
-        config.userContentController.addUserScript(script)
-        config.userContentController.addScriptMessageHandler(self, name: messageHander)
-        let webView = WKWebView(frame: CGRectZero, configuration: config)
-        webView.navigationDelegate = self
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.cocoachina.com")!))
-        self.view.addSubview(webView)
+    //HPSwitchDelegate
+    func switchClick(switchBtn: HPSwitch, atIndex index: Int) {
+        var type = ListType(rawValue: index)!
+        dataSource = PageDataCenter.instance.dataAll[type]
+        refreshView()
     }
     
 }
