@@ -34,11 +34,13 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("listrowcell", forIndexPath: indexPath) as! ListRowTableViewCell
         let content = dataSource![indexPath.row]
-//        if let data = PageDataCenter.instance.loadImage(content.imgurl) {
-        let fileName = PageDataCenter.instance.loadImage(content.imgurl)
-        if fileName != "" {
-            cell.imgTitle.image = UIImage(contentsOfFile: PageDataCenter.instance.imagePath.stringByAppendingPathComponent(fileName))
+        if let data = PageDataCenter.instance.loadImage(content.imgurl) {
+            cell.imgTitle.image = UIImage(data: data)
         }
+//        let fileName = PageDataCenter.instance.loadImage(content.imgurl)
+//        if fileName != "" {
+//            cell.imgTitle.image = UIImage(contentsOfFile: PageDataCenter.instance.imagePath.stringByAppendingPathComponent(fileName))
+//        }
 //        if let url = NSURL(string: content.imgurl) {
 //            if let data = NSData(contentsOfURL: url) {
 //                let img = UIImage(data: data)
