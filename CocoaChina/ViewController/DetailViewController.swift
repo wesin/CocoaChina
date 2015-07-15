@@ -20,8 +20,10 @@ class DetailViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let webView = segue.destinationViewController as! WKDetailViewController
+        if content!.url.hasPrefix("/") {
+            content?.url = mainUrl + content!.url
+        }
         webView.url = content!.url
-        
     }
     
     @IBAction func back(sender: AnyObject) {

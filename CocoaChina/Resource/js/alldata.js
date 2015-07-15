@@ -9,7 +9,7 @@ function parseMainLists() {
 		var imgUrl = img.getAttribute('src')
 		var title = img.getAttribute('title')
 		var content = item.querySelector('span i').textContent
-		list.push({'title':title, 'url':url, 'imgurl':imgUrl})
+		list.push({'title':title, 'url':url, 'imgurl':imgUrl, 'content':content})
 	}
 	return list
 }
@@ -32,3 +32,5 @@ function parseNewLists() {
 var result = {'main':parseMainLists(),'new':parseNewLists()}
 
 webkit.messageHandlers.mainhandler.postMessage(result);
+
+

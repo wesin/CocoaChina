@@ -10,12 +10,15 @@ import UIKit
 import WebKit
 
 enum MessageHandler:String {
-    case MainHander = "mainhandler"
+    case MainHandler = "mainhandler"
+    case ContentHandler = "contenthandler"
 }
 
-class ListCommonViewController:UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ListCommonViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate {
     
     var dataSource:[DataContent]?
+    
+    var pageType = ListType.Main
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,37 +35,52 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("listrowcell", forIndexPath: indexPath) as! ListRowTableViewCell
+        
         let content = dataSource![indexPath.row]
-        if let data = PageDataCenter.instance.loadImage(content.imgurl) {
-            cell.imgTitle.image = UIImage(data: data)
+        switch pageType {
+        case .Main, .Special:
+            let cell = tableView.dequeueReusableCellWithIdentifier("listrowdetailcell", forIndexPath: indexPath) as! ListRowDetailTableViewCell
+            if let data = PageDataCenter.instance.loadImage(content.imgurl) {
+                cell.imgTitle.image = UIImage(data: data)
+            }
+            cell.labelTitle.text = content.title
+            cell.labelDetail.text = content.content
+            return cell
+        case .New:
+            let cell = tableView.dequeueReusableCellWithIdentifier("listrowcell", forIndexPath: indexPath) as! ListRowTableViewCell
+            
+            if let data = PageDataCenter.instance.loadImage(content.imgurl) {
+                cell.imgTitle.image = UIImage(data: data)
+            }
+            cell.labelTitle.text = content.title
+            cell.labelTime.text = content.time
+            return cell
+        default:
+            return UITableViewCell()
         }
-//        let fileName = PageDataCenter.instance.loadImage(content.imgurl)
-//        if fileName != "" {
-//            cell.imgTitle.image = UIImage(contentsOfFile: PageDataCenter.instance.imagePath.stringByAppendingPathComponent(fileName))
-//        }
-//        if let url = NSURL(string: content.imgurl) {
-//            if let data = NSData(contentsOfURL: url) {
-//                let img = UIImage(data: data)
-//                cell.imgTitle.image = UIImage(data: data)
-//            }
-//        }
-        cell.labelTitle.text = content.title
-        cell.labelTime.text = content.time
-        cell.labelClick.text = content.click
-        return cell
+        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let content = dataSource![indexPath.row]
         let detailView = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewdetail") as! DetailViewController
         detailView.content = content
+        detailView.transitioningDelegate = self
         self.presentViewController(detailView, animated: true, completion: nil)
     }
    
-    //MARK:Public
-    func refreshView() {
-        
+//    //MARK:Public
+//    func refreshView() {
+//        
+//    }
+    
+    //MARK:UIViewControllerTransitioningDelegate
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ToLeftTransition()
     }
     
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ToRightTransition()
+    }
+
 }

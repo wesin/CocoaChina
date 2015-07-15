@@ -68,14 +68,18 @@
 		0A43E5C91B4F9814001735FF /* ListCommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5C81B4F9814001735FF /* ListCommonViewController.swift */; };
 		0A43E5CB1B4F9820001735FF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5CA1B4F9820001735FF /* DetailViewController.swift */; };
 		0A43E5CD1B4F9836001735FF /* WKDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5CC1B4F9836001735FF /* WKDetailViewController.swift */; };
-		0A43E5CF1B4F9976001735FF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5CE1B4F9976001735FF /* TabViewController.swift */; };
 		0A43E5D21B4FA228001735FF /* ListRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5D11B4FA228001735FF /* ListRowCell.xib */; };
 		0A43E5D41B4FA3AC001735FF /* ListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5D31B4FA3AC001735FF /* ListRowTableViewCell.swift */; };
-		0A43E5D81B4FC983001735FF /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5D71B4FC983001735FF /* main.js */; };
 		0A43E5DB1B4FCD38001735FF /* DataContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5DA1B4FCD38001735FF /* DataContent.swift */; };
 		0A43E5DD1B536F53001735FF /* detail.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5DC1B536F53001735FF /* detail.js */; };
 		0A43E5DF1B536FC5001735FF /* CocoaCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5DE1B536FC5001735FF /* CocoaCommon.swift */; };
-		0A43E5E11B53A6A6001735FF /* new.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A43E5E01B53A6A6001735FF /* new.js */; };
+		0AB7FACF1B5511B200B87898 /* special.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FACE1B5511B200B87898 /* special.js */; };
+		0AB7FAD11B55F9AC00B87898 /* ListRowDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD01B55F9AC00B87898 /* ListRowDetailCell.xib */; };
+		0AB7FAD31B55F9C300B87898 /* ListRowDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD21B55F9C300B87898 /* ListRowDetailTableViewCell.swift */; };
+		0AB7FAD51B56344300B87898 /* LeadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD41B56344300B87898 /* LeadListViewController.swift */; };
+		0AB7FAD71B56415700B87898 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD61B56415700B87898 /* content.js */; };
+		0AB7FAD91B565D0700B87898 /* ContentListRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */; };
+		0AB7FADB1B565D3500B87898 /* ContentListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,15 +166,19 @@
 		0A43E5C81B4F9814001735FF /* ListCommonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCommonViewController.swift; sourceTree = "<group>"; };
 		0A43E5CA1B4F9820001735FF /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0A43E5CC1B4F9836001735FF /* WKDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKDetailViewController.swift; sourceTree = "<group>"; };
-		0A43E5CE1B4F9976001735FF /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		0A43E5D01B4F9BCD001735FF /* CocoaChina-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaChina-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A43E5D11B4FA228001735FF /* ListRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListRowCell.xib; sourceTree = "<group>"; };
 		0A43E5D31B4FA3AC001735FF /* ListRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRowTableViewCell.swift; sourceTree = "<group>"; };
-		0A43E5D71B4FC983001735FF /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		0A43E5DA1B4FCD38001735FF /* DataContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataContent.swift; sourceTree = "<group>"; };
 		0A43E5DC1B536F53001735FF /* detail.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = detail.js; sourceTree = "<group>"; };
 		0A43E5DE1B536FC5001735FF /* CocoaCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaCommon.swift; sourceTree = "<group>"; };
-		0A43E5E01B53A6A6001735FF /* new.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = new.js; sourceTree = "<group>"; };
+		0AB7FACE1B5511B200B87898 /* special.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = special.js; sourceTree = "<group>"; };
+		0AB7FAD01B55F9AC00B87898 /* ListRowDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListRowDetailCell.xib; sourceTree = "<group>"; };
+		0AB7FAD21B55F9C300B87898 /* ListRowDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRowDetailTableViewCell.swift; sourceTree = "<group>"; };
+		0AB7FAD41B56344300B87898 /* LeadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadListViewController.swift; sourceTree = "<group>"; };
+		0AB7FAD61B56415700B87898 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentListRowCell.xib; sourceTree = "<group>"; };
+		0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentListRowTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +385,10 @@
 			children = (
 				0A43E5D11B4FA228001735FF /* ListRowCell.xib */,
 				0A43E5D31B4FA3AC001735FF /* ListRowTableViewCell.swift */,
+				0AB7FAD01B55F9AC00B87898 /* ListRowDetailCell.xib */,
+				0AB7FAD21B55F9C300B87898 /* ListRowDetailTableViewCell.swift */,
+				0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */,
+				0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -386,11 +398,11 @@
 			children = (
 				0A43E5C21B4F9799001735FF /* BGViewController.swift */,
 				0A43E5C41B4F97E0001735FF /* LeadViewController.swift */,
+				0AB7FAD41B56344300B87898 /* LeadListViewController.swift */,
 				0A43E5C61B4F97FB001735FF /* MainViewController.swift */,
 				0A43E5C81B4F9814001735FF /* ListCommonViewController.swift */,
 				0A43E5CA1B4F9820001735FF /* DetailViewController.swift */,
 				0A43E5CC1B4F9836001735FF /* WKDetailViewController.swift */,
-				0A43E5CE1B4F9976001735FF /* TabViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -406,10 +418,10 @@
 		0A43E5D61B4FC983001735FF /* js */ = {
 			isa = PBXGroup;
 			children = (
+				0AB7FAD61B56415700B87898 /* content.js */,
+				0AB7FACE1B5511B200B87898 /* special.js */,
 				0A3CFB6E1B54C32D005E40D3 /* alldata.js */,
-				0A43E5E01B53A6A6001735FF /* new.js */,
 				0A43E5DC1B536F53001735FF /* detail.js */,
-				0A43E5D71B4FC983001735FF /* main.js */,
 			);
 			path = js;
 			sourceTree = "<group>";
@@ -506,12 +518,14 @@
 			files = (
 				0A3CFB6F1B54C32D005E40D3 /* alldata.js in Resources */,
 				0A43E5D21B4FA228001735FF /* ListRowCell.xib in Resources */,
-				0A43E5E11B53A6A6001735FF /* new.js in Resources */,
+				0AB7FACF1B5511B200B87898 /* special.js in Resources */,
 				0A43E5DD1B536F53001735FF /* detail.js in Resources */,
 				0A43E5361B4F774D001735FF /* Main.storyboard in Resources */,
+				0AB7FAD11B55F9AC00B87898 /* ListRowDetailCell.xib in Resources */,
+				0AB7FAD71B56415700B87898 /* content.js in Resources */,
 				0A43E53B1B4F774D001735FF /* LaunchScreen.xib in Resources */,
+				0AB7FAD91B565D0700B87898 /* ContentListRowCell.xib in Resources */,
 				0A43E5381B4F774D001735FF /* Images.xcassets in Resources */,
-				0A43E5D81B4FC983001735FF /* main.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,14 +567,15 @@
 				0A3CFB6D1B54BF36005E40D3 /* PageDataCenter.swift in Sources */,
 				0A43E5DB1B4FCD38001735FF /* DataContent.swift in Sources */,
 				0A43E5B91B4F9776001735FF /* NSString+Encrypto.m in Sources */,
+				0AB7FADB1B565D3500B87898 /* ContentListRowTableViewCell.swift in Sources */,
 				0A43E5CB1B4F9820001735FF /* DetailViewController.swift in Sources */,
 				0A43E5C51B4F97E0001735FF /* LeadViewController.swift in Sources */,
+				0AB7FAD31B55F9C300B87898 /* ListRowDetailTableViewCell.swift in Sources */,
 				0A43E5A41B4F9776001735FF /* Constraint.swift in Sources */,
 				0A43E5A31B4F9776001735FF /* Compound.swift in Sources */,
 				0A43E5B51B4F9776001735FF /* AESCrypt.m in Sources */,
 				0A43E5C71B4F97FB001735FF /* MainViewController.swift in Sources */,
 				0A43E5B61B4F9776001735FF /* NSData+Base64.m in Sources */,
-				0A43E5CF1B4F9976001735FF /* TabViewController.swift in Sources */,
 				0A43E5971B4F9776001735FF /* WesinTextField.swift in Sources */,
 				0A43E59A1B4F9776001735FF /* ArrayExtension.swift in Sources */,
 				0A43E5C01B4F9776001735FF /* ToLeftTransition.swift in Sources */,
@@ -584,6 +599,7 @@
 				0A43E5991B4F9776001735FF /* Animator.swift in Sources */,
 				0A43E5AD1B4F9776001735FF /* Layout.swift in Sources */,
 				0A43E5A71B4F9776001735FF /* Dimension.swift in Sources */,
+				0AB7FAD51B56344300B87898 /* LeadListViewController.swift in Sources */,
 				0A43E5931B4F9776001735FF /* HPImageView.swift in Sources */,
 				0A43E5311B4F774D001735FF /* AppDelegate.swift in Sources */,
 				0A43E5BD1B4F9776001735FF /* SWXMLHash.swift in Sources */,

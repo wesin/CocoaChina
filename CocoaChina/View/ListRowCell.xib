@@ -31,21 +31,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz3-fT-Ox1">
-                                <rect key="frame" x="54" y="40.5" width="80" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz3-fT-Ox1">
+                                <rect key="frame" x="456" y="40.5" width="80" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8aC-Zo-esv"/>
                                     <constraint firstAttribute="width" constant="80" id="dtE-br-rKP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htj-up-RDe">
-                                <rect key="frame" x="456" y="40.5" width="80" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="4pf-Da-rYx"/>
-                                    <constraint firstAttribute="width" constant="80" id="On8-R8-EmD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,12 +48,16 @@
                             <constraint firstItem="am4-VR-4aM" firstAttribute="leading" secondItem="rCT-tn-vQO" secondAttribute="trailing" constant="5" id="3AS-9N-4h3"/>
                             <constraint firstAttribute="centerY" secondItem="rCT-tn-vQO" secondAttribute="centerY" id="Amp-Dt-90H"/>
                             <constraint firstItem="rCT-tn-vQO" firstAttribute="leading" secondItem="ApK-JG-Kep" secondAttribute="leading" constant="5" id="FFj-Fm-8Ew"/>
-                            <constraint firstItem="am4-VR-4aM" firstAttribute="trailing" secondItem="Htj-up-RDe" secondAttribute="trailing" id="JQc-cx-ow6"/>
-                            <constraint firstItem="Htj-up-RDe" firstAttribute="centerY" secondItem="Sz3-fT-Ox1" secondAttribute="centerY" id="Zkr-dD-ccR"/>
                             <constraint firstAttribute="centerY" secondItem="am4-VR-4aM" secondAttribute="centerY" constant="7" id="bES-kZ-amz"/>
                             <constraint firstItem="am4-VR-4aM" firstAttribute="leading" secondItem="Sz3-fT-Ox1" secondAttribute="leading" id="cbO-KS-DA8"/>
+                            <constraint firstItem="Sz3-fT-Ox1" firstAttribute="trailing" secondItem="am4-VR-4aM" secondAttribute="trailing" id="e6w-3J-5p7"/>
                             <constraint firstAttribute="centerY" secondItem="Sz3-fT-Ox1" secondAttribute="centerY" constant="-18" id="lt5-7X-mZr"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cbO-KS-DA8"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,7 +70,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imgTitle" destination="rCT-tn-vQO" id="biE-HW-Z8E"/>
-                <outlet property="labelClick" destination="Htj-up-RDe" id="stD-tp-yfu"/>
                 <outlet property="labelTime" destination="Sz3-fT-Ox1" id="Qt8-bd-syg"/>
                 <outlet property="labelTitle" destination="am4-VR-4aM" id="Drs-3d-Pr7"/>
             </connections>

@@ -8,6 +8,8 @@
 
 import Foundation
 
+let mainUrl = "http://www.cocoachina.com"
+
 class PageDataCenter:NSObject {
     
     private static let a = PageDataCenter()
@@ -45,26 +47,30 @@ class PageDataCenter:NSObject {
     :returns: 返回图片数据
     */
     func loadImage(imgUrl:String) -> NSData? {
+        var imgRealUrl = imgUrl
         let fileManager = NSFileManager.defaultManager()
         if !fileManager.fileExistsAtPath(imagePath) {
             fileManager.createDirectoryAtPath(imagePath, withIntermediateDirectories: true, attributes: nil, error: nil)
         }
-        if let fileName = imageDic[imgUrl] {
-//            return fileName
+        if imgUrl.hasPrefix("/") {
+            imgRealUrl = mainUrl + imgUrl
+        }
+        if let fileName = imageDic[imgRealUrl] {
+            //            return fileName
             return NSData(contentsOfFile:  imagePath.stringByAppendingPathComponent(fileName))
         }
         //检查是不是已经存在该文件
-        let fileName = imgUrl.substringFromIndex(imgUrl.rangeOfString("/", options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil)!.endIndex)
+        let fileName = imgRealUrl.substringFromIndex(imgRealUrl.rangeOfString("/", options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil)!.endIndex)
         let filePath = imagePath.stringByAppendingPathComponent(fileName)
         if fileManager.fileExistsAtPath(filePath) {
             imageDic[fileName] = fileName
             return NSData(contentsOfFile: filePath)
         }
         //无奈了只能去服务端重新取了
-        if let url = NSURL(string: imgUrl) {
+        if let url = NSURL(string: imgRealUrl) {
             if let data = NSData(contentsOfURL: url) {
                 fileManager.createFileAtPath(imagePath.stringByAppendingPathComponent(fileName), contents: data, attributes: nil)
-                imageDic[imgUrl] = fileName
+                imageDic[imgRealUrl] = fileName
                 return data
             }
         }
