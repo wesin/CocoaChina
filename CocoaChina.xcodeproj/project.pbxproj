@@ -80,6 +80,10 @@
 		0AB7FAD71B56415700B87898 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD61B56415700B87898 /* content.js */; };
 		0AB7FAD91B565D0700B87898 /* ContentListRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */; };
 		0AB7FADB1B565D3500B87898 /* ContentListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */; };
+		0ABD65C81B574DF500AE5C0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD65C71B574DF500AE5C0B /* SearchViewController.swift */; };
+		0ABD65CA1B57522E00AE5C0B /* SearchRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */; };
+		0ABD65CC1B57531C00AE5C0B /* SearchRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */; };
+		0ABD65CE1B5793F400AE5C0B /* search.js in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD65CD1B5793F400AE5C0B /* search.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +183,10 @@
 		0AB7FAD61B56415700B87898 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentListRowCell.xib; sourceTree = "<group>"; };
 		0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentListRowTableViewCell.swift; sourceTree = "<group>"; };
+		0ABD65C71B574DF500AE5C0B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchRowCell.xib; sourceTree = "<group>"; };
+		0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRowTableViewCell.swift; sourceTree = "<group>"; };
+		0ABD65CD1B5793F400AE5C0B /* search.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = search.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +397,8 @@
 				0AB7FAD21B55F9C300B87898 /* ListRowDetailTableViewCell.swift */,
 				0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */,
 				0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */,
+				0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */,
+				0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -403,6 +413,7 @@
 				0A43E5C81B4F9814001735FF /* ListCommonViewController.swift */,
 				0A43E5CA1B4F9820001735FF /* DetailViewController.swift */,
 				0A43E5CC1B4F9836001735FF /* WKDetailViewController.swift */,
+				0ABD65C71B574DF500AE5C0B /* SearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -418,6 +429,7 @@
 		0A43E5D61B4FC983001735FF /* js */ = {
 			isa = PBXGroup;
 			children = (
+				0ABD65CD1B5793F400AE5C0B /* search.js */,
 				0AB7FAD61B56415700B87898 /* content.js */,
 				0AB7FACE1B5511B200B87898 /* special.js */,
 				0A3CFB6E1B54C32D005E40D3 /* alldata.js */,
@@ -516,6 +528,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABD65CA1B57522E00AE5C0B /* SearchRowCell.xib in Resources */,
 				0A3CFB6F1B54C32D005E40D3 /* alldata.js in Resources */,
 				0A43E5D21B4FA228001735FF /* ListRowCell.xib in Resources */,
 				0AB7FACF1B5511B200B87898 /* special.js in Resources */,
@@ -525,6 +538,7 @@
 				0AB7FAD71B56415700B87898 /* content.js in Resources */,
 				0A43E53B1B4F774D001735FF /* LaunchScreen.xib in Resources */,
 				0AB7FAD91B565D0700B87898 /* ContentListRowCell.xib in Resources */,
+				0ABD65CE1B5793F400AE5C0B /* search.js in Resources */,
 				0A43E5381B4F774D001735FF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,12 +595,14 @@
 				0A43E5C01B4F9776001735FF /* ToLeftTransition.swift in Sources */,
 				0A43E59D1B4F9776001735FF /* MessageShow.swift in Sources */,
 				0A43E5AA1B4F9776001735FF /* Edges.swift in Sources */,
+				0ABD65C81B574DF500AE5C0B /* SearchViewController.swift in Sources */,
 				0A43E5A21B4F9776001735FF /* Coefficients.swift in Sources */,
 				0A43E5BB1B4F9776001735FF /* NSDate+WSDateTools.m in Sources */,
 				0A43E5D41B4FA3AC001735FF /* ListRowTableViewCell.swift in Sources */,
 				0A43E5C91B4F9814001735FF /* ListCommonViewController.swift in Sources */,
 				0A43E5C11B4F9776001735FF /* ToRightTransition.swift in Sources */,
 				0A43E5BA1B4F9776001735FF /* IJReachability.swift in Sources */,
+				0ABD65CC1B57531C00AE5C0B /* SearchRowTableViewCell.swift in Sources */,
 				0A43E5951B4F9776001735FF /* HPSwitch.swift in Sources */,
 				0A43E5A61B4F9776001735FF /* Context.swift in Sources */,
 				0A43E5A11B4F9776001735FF /* Align.swift in Sources */,

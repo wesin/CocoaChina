@@ -135,6 +135,71 @@
             </objects>
             <point key="canvasLocation" x="1517" y="719"/>
         </scene>
+        <!--viewsearch-->
+        <scene sceneID="7wZ-cb-TJP">
+            <objects>
+                <viewController storyboardIdentifier="viewsearch" title="viewsearch" id="xKw-n7-B2z" customClass="SearchViewController" customModule="CocoaChina" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="df7-33-yCH"/>
+                        <viewControllerLayoutGuide type="bottom" id="TJj-vZ-4vz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yaU-dh-G7r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgC-or-ZdW">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" red="0.29826736990000002" green="0.76816105680000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="搜索" id="ZEa-nP-BKU">
+                                        <barButtonItem key="leftBarButtonItem" image="back" id="gDS-8g-Jeo">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="back:" destination="xKw-n7-B2z" id="FU6-4M-1tV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="mDp-b1-yqt">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xKw-n7-B2z" id="HHi-4n-oND"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zfw-oP-z48">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="xKw-n7-B2z" id="Q9T-Fk-ZAB"/>
+                                    <outlet property="delegate" destination="xKw-n7-B2z" id="d9z-Y5-yYz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.29826736990000002" green="0.76816105680000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mDp-b1-yqt" secondAttribute="trailing" id="FBs-aS-w0g"/>
+                            <constraint firstItem="TgC-or-ZdW" firstAttribute="top" secondItem="df7-33-yCH" secondAttribute="bottom" id="dcz-tk-i2a"/>
+                            <constraint firstItem="zfw-oP-z48" firstAttribute="leading" secondItem="yaU-dh-G7r" secondAttribute="leading" id="jvJ-pK-lLy"/>
+                            <constraint firstAttribute="trailing" secondItem="TgC-or-ZdW" secondAttribute="trailing" id="k0P-6T-JJv"/>
+                            <constraint firstItem="mDp-b1-yqt" firstAttribute="top" secondItem="TgC-or-ZdW" secondAttribute="bottom" id="kwJ-X5-xbR"/>
+                            <constraint firstItem="TJj-vZ-4vz" firstAttribute="top" secondItem="zfw-oP-z48" secondAttribute="bottom" id="p8C-5n-Nx1"/>
+                            <constraint firstAttribute="trailing" secondItem="zfw-oP-z48" secondAttribute="trailing" id="qfS-91-OCl"/>
+                            <constraint firstItem="TgC-or-ZdW" firstAttribute="leading" secondItem="yaU-dh-G7r" secondAttribute="leading" id="tLz-Ap-GQ0"/>
+                            <constraint firstItem="mDp-b1-yqt" firstAttribute="leading" secondItem="yaU-dh-G7r" secondAttribute="leading" id="yCs-eg-Bav"/>
+                            <constraint firstItem="zfw-oP-z48" firstAttribute="top" secondItem="mDp-b1-yqt" secondAttribute="bottom" id="zxa-5z-hdl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="mDp-b1-yqt" id="qLg-dc-pYf"/>
+                        <outlet property="tableResult" destination="zfw-oP-z48" id="iQA-Rz-rlA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fLY-me-XuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873" y="-658"/>
+        </scene>
         <!--viewmain-->
         <scene sceneID="tpb-D3-Jei">
             <objects>
@@ -157,6 +222,12 @@
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="showLeading:" destination="Nx5-Y2-5Mj" id="Ysr-Xh-Ekz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="glass" id="SNB-pa-hAt">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="xKw-n7-B2z" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="g6r-xT-dz3"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -253,6 +324,12 @@
                                                 <action selector="back:" destination="mmc-oe-90a" id="iHj-IB-eG5"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="rrX-wa-yQg">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="store:" destination="mmc-oe-90a" id="2vT-Kr-Axo"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -304,6 +381,7 @@
     </scenes>
     <resources>
         <image name="back" width="22" height="22"/>
+        <image name="glass" width="33" height="33"/>
         <image name="logo" width="464" height="150"/>
         <image name="main" width="22" height="22"/>
     </resources>

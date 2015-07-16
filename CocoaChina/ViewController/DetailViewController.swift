@@ -26,6 +26,10 @@ class DetailViewController: UIViewController {
         webView.url = content!.url
     }
     
+    @IBAction func store(sender: AnyObject) {
+        
+    }
+    
     @IBAction func back(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

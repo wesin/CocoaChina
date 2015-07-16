@@ -12,6 +12,7 @@ import WebKit
 enum MessageHandler:String {
     case MainHandler = "mainhandler"
     case ContentHandler = "contenthandler"
+    case SearchHandler = "searchhandler"
 }
 
 class ListCommonViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerTransitioningDelegate {
@@ -68,11 +69,6 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
         detailView.transitioningDelegate = self
         self.presentViewController(detailView, animated: true, completion: nil)
     }
-   
-//    //MARK:Public
-//    func refreshView() {
-//        
-//    }
     
     //MARK:UIViewControllerTransitioningDelegate
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

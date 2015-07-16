@@ -16,6 +16,10 @@ struct DataContent {
     var click = ""
     var content = ""
     
+    init() {
+        
+    }
+    
     init(contentObj:[String:AnyObject]) {
         self.title = contentObj["title"] as? String ?? ""
         self.url = contentObj["url"] as? String ?? ""
