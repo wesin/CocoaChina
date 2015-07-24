@@ -14,6 +14,7 @@ class PageDataCenter:NSObject {
     
     private override init() {
         FavoriteCenter.instance
+        imageHeadName = imageHeadPath.stringByAppendingPathComponent("head.png")
     }
     
     private static let a = PageDataCenter()
@@ -29,6 +30,10 @@ class PageDataCenter:NSObject {
     
     var imagePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0].stringByAppendingPathComponent("Image")
     //        let documentPath: AnyObject = path[0] NSHomeDirectory().stringByAppendingPathComponent("Image")
+    
+    
+    var imageHeadPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0].stringByAppendingPathComponent("Head")
+    var imageHeadName = ""
     
     func loadImageAsync() {
 

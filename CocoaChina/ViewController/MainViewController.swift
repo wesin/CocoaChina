@@ -52,24 +52,34 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        hideLeadingImmediately()
+    }
+    
     @IBAction func showLeading(sender: AnyObject) {
         if converView == nil {
             converView = UIView(frame: self.view.bounds)
             converView?.backgroundColor = UIColor.blackColor()
-            converView?.alpha = 0
             var tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideLeading"))
             tapGesture.numberOfTapsRequired = 1
             tapGesture.numberOfTouchesRequired = 1
             converView?.addGestureRecognizer(tapGesture)
         }
+        converView?.alpha = 0
         self.view.addSubview(converView!)
         if leadView == nil {
             leadView = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewlead") as? LeadViewController
             leadView?.parentView = self
             
-            let width = self.view.bounds.width * leadWidthPer
-            leadView?.view.frame = CGRect(x: -width, y: 0, width: width, height: self.view.bounds.height)
         }
+        let width = self.view.bounds.width * leadWidthPer
+        leadView?.view.frame = CGRect(x: -width, y: 0, width: width, height: self.view.bounds.height)
         self.view.addSubview(leadView!.view)
 
         if leftGesture == nil {
@@ -94,6 +104,11 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
                 self.converView?.removeFromSuperview()
                 self.leadView?.view.removeFromSuperview()
         })
+    }
+    
+    func hideLeadingImmediately() {
+        self.converView?.removeFromSuperview()
+        self.leadView?.view.removeFromSuperview()
     }
     
     func refreshView() {

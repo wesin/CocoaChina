@@ -87,6 +87,45 @@ class CommonFunc {
         return newImage
     }
     
+    //MARK:FoldSize
+    
+    /**
+    获取文件大小
+    
+    :param: path	路径
+    
+    :returns: 大小
+    */
+    static func fileSizeAtPath(path:String) -> Double {
+        let manager = NSFileManager.defaultManager()
+        if manager.fileExistsAtPath(path) {
+            return manager.attributesOfItemAtPath(path, error: nil)![NSFileSize as NSObject] as! Double
+        }
+        return 0
+    }
+    
+    /**
+    获取文件夹大小
+    
+    :param: path	路径
+    
+    :returns: 多少M
+    */
+    static func folderSizeAtPath(path:String) -> Double {
+        let manager = NSFileManager.defaultManager()
+        if !manager.fileExistsAtPath(path) {
+            return 0
+        }
+        var fileName = ""
+        var folderSize = 0.0
+        //深路径搜索，返回所有文件包括子文件夹里面文件的路径
+        manager.subpathsAtPath(path)?.map({
+            (subPath) -> Void in
+            folderSize += self.fileSizeAtPath(path.stringByAppendingPathComponent(subPath as! String))
+        })
+        return folderSize / (1024 * 1024)
+    }
+    
     /**
     不延迟的加载方法
     

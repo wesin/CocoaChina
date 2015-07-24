@@ -16,29 +16,73 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
     
     var leadSource:[(url:String, title:String)]?
     var listDic = [String:LeadListViewController]()
+    var settingView:SettingViewController?
+    
+    var headImage:UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         leadSource = [("ios","iOS开发"),("swift","Swift"),("appstore","App Store研究"),("game","游戏开发"),("review","应用评测"),("apple","苹果相关"),("design","产品设计"),("market","营销推广"),("cocos","Cocos引擎"),("industry","业界动态"),("webapp","WebApp"),("programmer","程序人生")]
         tableLead.tableFooterView = UIView(frame: CGRectZero)
+        headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("changehead:"), name: "changehead", object: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        if let index = tableLead.indexPathForSelectedRow() {
+            tableLead.deselectRowAtIndexPath(index, animated: false)
+        }
+        super.viewDidDisappear(animated)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "changehead", object: nil)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 88
+        }
+        return 44
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leadSource!.count
+        return leadSource!.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("leadrowcell", forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel?.text = leadSource![indexPath.row].title
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("headrowcell", forIndexPath: indexPath) as! HeadRowTableViewCell
+            cell.imgHead.image = headImage
+            cell.selectedBackgroundView = UIView(frame: cell.frame)
+            cell.selectedBackgroundView.backgroundColor = UIColor.darkGrayColor()
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("leadrowcell", forIndexPath: indexPath) as! UITableViewCell
+            cell.textLabel?.text = leadSource![indexPath.row - 1].title
+            cell.selectedBackgroundView = UIView(frame: cell.frame)
+            cell.selectedBackgroundView.backgroundColor = UIColor.darkGrayColor()
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let content = leadSource![indexPath.row]
+        if indexPath.row == 0 {
+            settingView = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewsetting") as? SettingViewController
+            settingView?.transitioningDelegate = self
+            CommonFunc.presentView(parentView!, toVC: settingView!)
+//            parentView?.presentViewController(settingView!, animated: true, completion: nil)
+            return
+        }
+        let content = leadSource![indexPath.row - 1]
         let url = mainUrl + "//" + content.url
         var viewTmp = listDic[url]
         if viewTmp == nil {
@@ -47,7 +91,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
             viewTmp?.url = url
         }
         viewTmp?.transitioningDelegate = self
-        parentView?.presentViewController(viewTmp!, animated: true, completion: nil)
+        CommonFunc.presentView(parentView!, toVC: viewTmp!)
         
     }
     
@@ -58,5 +102,10 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ToRightTransition()
+    }
+    
+    func changehead(message:NSNotification) {
+        headImage = message.object as? UIImage
+        tableLead.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
     }
 }

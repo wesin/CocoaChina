@@ -21,6 +21,9 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     @IBOutlet weak var tableList: UITableView!
     
     var header:MJRefreshNormalHeader?
+    var footer:MJRefreshBackNormalFooter?
+    
+    weak var headerFreshConfig:WKUserContentController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,13 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
         header?.setTitle("松开结束", forState: MJRefreshStatePulling)
         tableList.header = header
+        
+        footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("getNextData"))
+        tableList.footer = footer
+    }
+    
+    deinit {
+        println("LeadList deinit")
     }
     
     @IBAction func back(sender: UIBarButtonItem) {
@@ -62,6 +72,9 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
                 for (key,value) in contentDic {
 //                    var tempData = [DataContent]()
                     if key == "content" {
+                        if headerFreshConfig == userContentController {
+                            self.dataSource?.removeAll(keepCapacity: true)
+                        }
                         if let data = value as? [[String:AnyObject]] {
                             data.map(){
                                 self.dataSource?.append(DataContent(contentObj: $0))
@@ -71,12 +84,17 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
                             }
                         }
                     } else {
-                        url = url + "//" + (value as! String)
+                        if value as? String == nil {
+                            nextUrl = ""
+                        } else {
+                            nextUrl = url + "//" + (value as! String)
+                        }
                     }
                 }
             }
         }
         header?.endRefreshing()
+        footer?.endRefreshing()
     }
     
     /**
@@ -89,9 +107,25 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         webView?.removeFromSuperview()
         webView = nil
         let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
+        headerFreshConfig = config.userContentController
         config.userContentController.addScriptMessageHandler(self, name: MessageHandler.ContentHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
         webView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+        self.view.addSubview(webView!)
+    }
+    
+    func getNextData() {
+        if nextUrl == "" {
+            footer?.setTitle("已是最后一页", forState: MJRefreshStateNoMoreData)
+            footer?.endRefreshing()
+            return
+        }
+        webView?.removeFromSuperview()
+        webView = nil
+        let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
+        config.userContentController.addScriptMessageHandler(self, name: MessageHandler.ContentHandler.rawValue)
+        webView = WKWebView(frame: CGRectZero, configuration: config)
+        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
         self.view.addSubview(webView!)
     }
 }
