@@ -20,6 +20,12 @@ struct DataContent {
         
     }
     
+    init(item:Favorite) {
+        self.title = item.title
+        self.url = item.url
+        self.time = item.date.formattedDateWithFormat("yyyy-MM-dd")
+    }
+    
     init(contentObj:[String:AnyObject]) {
         self.title = contentObj["title"] as? String ?? ""
         self.url = contentObj["url"] as? String ?? ""

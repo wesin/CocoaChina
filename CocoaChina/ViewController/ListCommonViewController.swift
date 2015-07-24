@@ -25,6 +25,8 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
     }
+    
+    
 
     //MARK:UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -55,6 +57,11 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
             }
             cell.labelTitle.text = content.title
             cell.labelTime.text = content.time
+            return cell
+        case .Favorite:
+            let cell = tableView.dequeueReusableCellWithIdentifier("favoriterowcell", forIndexPath: indexPath) as! FavoriteRowTableViewCell
+            cell.labelTitle?.text = content.title
+            cell.labelTime?.text = content.time
             return cell
         default:
             return UITableViewCell()

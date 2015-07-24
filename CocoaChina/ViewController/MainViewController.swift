@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import WebKit
 
 enum ListType:Int {
     case Main = 0
     case New = 1
     case Special = 2
+    case Favorite = 3
     case Content = 100
 }
 
-class MainViewController:ListCommonViewController, HPSwitchDelegate {
+class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMessageHandler {
     
     @IBOutlet weak var switchSeg: HPSwitch!
     
@@ -28,14 +30,25 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate {
     var leadWidthPer:CGFloat = 0.5
     var converView:UIView?
     
+    var header:MJRefreshNormalHeader?
+    
+    var webView:WKWebView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        switchSeg.arrayTitle = ["推荐", "最新", "专题"]
+        switchSeg.arrayTitle = ["推荐", "最新", "专题","收藏"]
         switchSeg.delegate = self
         tableMain.contentInset = UIEdgeInsetsMake(2.5, 0, 0, 0)
         tableMain.registerNib(UINib(nibName: "ListRowCell", bundle: nil), forCellReuseIdentifier: "listrowcell")
         tableMain.registerNib(UINib(nibName: "ListRowDetailCell", bundle: nil), forCellReuseIdentifier: "listrowdetailcell")
+        tableMain.registerNib(UINib(nibName: "FavoriteRowCell", bundle: nil), forCellReuseIdentifier: "favoriterowcell")
         dataSource = PageDataCenter.instance.dataAll[ListType.Main]
+        
+        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("getDataSource"))
+        header?.lastUpdatedTimeLabel.hidden = true
+        header?.setTitle("下拉刷新", forState: MJRefreshStateIdle)
+        header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
+        header?.setTitle("松开结束", forState: MJRefreshStatePulling)
+        tableMain.header = header
         
     }
     
@@ -90,8 +103,74 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate {
     //HPSwitchDelegate
     func switchClick(switchBtn: HPSwitch, atIndex index: Int) {
         pageType = ListType(rawValue: index)!
+        if pageType == ListType.Favorite {
+            PageDataCenter.instance.getFavoriteList()
+        }
         dataSource = PageDataCenter.instance.dataAll[pageType]
         refreshView()
+    }
+    
+    //MARK:UITabelViewOverride
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return pageType == .Favorite
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            FavoriteCenter.instance.deleteFavoriteByIndex(indexPath.row)
+            dataSource?.removeAtIndex(indexPath.row)
+            tableMain.beginUpdates()
+            tableMain.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            tableMain.endUpdates()
+        }
+    }
+    
+    //MARK:ReloadView
+    
+    //MARK:WKScriptMessageHandler
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        if message.name == MessageHandler.MainHandler.rawValue {
+            if let contentDic = message.body as? [String:[[String:AnyObject]]] {
+                for (key,value) in contentDic {
+                    var tempData = [DataContent]()
+                    value.map(){
+                        tempData.append(DataContent(contentObj: $0))
+                    }
+                    switch key {
+                    case "main":
+                        PageDataCenter.instance.dataAll[ListType.Main] = tempData
+                    case "new":
+                        PageDataCenter.instance.dataAll[ListType.New] = tempData
+                    case "special":
+                        PageDataCenter.instance.dataAll[ListType.Special] = tempData
+                    default:
+                        return
+                    }
+                }
+                tableMain.reloadData()
+                //异步加载图片数据
+                //                PageDataCenter.instance.loadImageAsync()
+            }
+        }
+        header?.endRefreshing()
+    }
+    
+    /**
+    获取数据源
+    
+    :param: name	文件名
+    :param: type	文件后缀名
+    */
+    func getDataSource() {
+        webView?.removeFromSuperview()
+        webView = nil
+        let config = CocoaCommon.getConfig("alldata", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
+        config.userContentController.addScriptMessageHandler(self, name: MessageHandler.MainHandler.rawValue)
+        webView = WKWebView(frame: CGRectZero, configuration: config)
+        //                webView.navigationDelegate = self
+        //        webView.loadRequest(NSURLRequest(URL: ))
+        webView?.loadRequest(NSURLRequest(URL: NSURL(string: mainUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+        self.view.addSubview(webView!)
     }
     
 }

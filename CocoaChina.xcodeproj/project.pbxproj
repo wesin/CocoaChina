@@ -84,6 +84,25 @@
 		0ABD65CA1B57522E00AE5C0B /* SearchRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */; };
 		0ABD65CC1B57531C00AE5C0B /* SearchRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */; };
 		0ABD65CE1B5793F400AE5C0B /* search.js in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD65CD1B5793F400AE5C0B /* search.js */; };
+		0ABD661C1B5A33C400AE5C0B /* SugarRecordContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66051B5A33C400AE5C0B /* SugarRecordContextProtocol.swift */; };
+		0ABD661D1B5A33C400AE5C0B /* SugarRecordResultsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66061B5A33C400AE5C0B /* SugarRecordResultsProtocol.swift */; };
+		0ABD661E1B5A33C400AE5C0B /* SugarRecordStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66071B5A33C400AE5C0B /* SugarRecordStackProtocol.swift */; };
+		0ABD661F1B5A33C400AE5C0B /* SugarRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66081B5A33C400AE5C0B /* SugarRecord.swift */; };
+		0ABD66201B5A33C400AE5C0B /* SugarRecordFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66091B5A33C400AE5C0B /* SugarRecordFinder.swift */; };
+		0ABD66211B5A33C400AE5C0B /* SugarRecordLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD660A1B5A33C400AE5C0B /* SugarRecordLogger.swift */; };
+		0ABD66221B5A33C400AE5C0B /* SugarRecordResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD660B1B5A33C400AE5C0B /* SugarRecordResults.swift */; };
+		0ABD66231B5A33C400AE5C0B /* CDArray+SugarRecordResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD660E1B5A33C400AE5C0B /* CDArray+SugarRecordResults.swift */; };
+		0ABD66241B5A33C400AE5C0B /* DefaultCDStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD660F1B5A33C400AE5C0B /* DefaultCDStack.swift */; };
+		0ABD66251B5A33C400AE5C0B /* iCloudCDStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66101B5A33C400AE5C0B /* iCloudCDStack.swift */; };
+		0ABD66261B5A33C400AE5C0B /* NSManagedObject+SugarRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66111B5A33C400AE5C0B /* NSManagedObject+SugarRecord.swift */; };
+		0ABD66271B5A33C400AE5C0B /* SugarRecordCDContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66121B5A33C400AE5C0B /* SugarRecordCDContext.swift */; };
+		0ABD66281B5A33C400AE5C0B /* SugarRecordFinder+FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66131B5A33C400AE5C0B /* SugarRecordFinder+FetchedResultsController.swift */; };
+		0ABD66321B5A35B600AE5C0B /* CocoaChina.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66301B5A35B600AE5C0B /* CocoaChina.xcdatamodeld */; };
+		0ABD66341B5A364C00AE5C0B /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66331B5A364C00AE5C0B /* Favorite.swift */; };
+		0ABD66361B5A371300AE5C0B /* FavoriteCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66351B5A371300AE5C0B /* FavoriteCenter.swift */; };
+		0ABD66381B5A44E900AE5C0B /* FavoriteRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD66371B5A44E900AE5C0B /* FavoriteRowCell.xib */; };
+		0ABD663A1B5A456300AE5C0B /* FavoriteRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD66391B5A456300AE5C0B /* FavoriteRowTableViewCell.swift */; };
+		BE1E865BBACB3C0A99C71C1B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2405CCD427C02F92220B80 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +206,28 @@
 		0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchRowCell.xib; sourceTree = "<group>"; };
 		0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRowTableViewCell.swift; sourceTree = "<group>"; };
 		0ABD65CD1B5793F400AE5C0B /* search.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = search.js; sourceTree = "<group>"; };
+		0ABD66051B5A33C400AE5C0B /* SugarRecordContextProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordContextProtocol.swift; sourceTree = "<group>"; };
+		0ABD66061B5A33C400AE5C0B /* SugarRecordResultsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordResultsProtocol.swift; sourceTree = "<group>"; };
+		0ABD66071B5A33C400AE5C0B /* SugarRecordStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordStackProtocol.swift; sourceTree = "<group>"; };
+		0ABD66081B5A33C400AE5C0B /* SugarRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecord.swift; sourceTree = "<group>"; };
+		0ABD66091B5A33C400AE5C0B /* SugarRecordFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordFinder.swift; sourceTree = "<group>"; };
+		0ABD660A1B5A33C400AE5C0B /* SugarRecordLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordLogger.swift; sourceTree = "<group>"; };
+		0ABD660B1B5A33C400AE5C0B /* SugarRecordResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordResults.swift; sourceTree = "<group>"; };
+		0ABD660E1B5A33C400AE5C0B /* CDArray+SugarRecordResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDArray+SugarRecordResults.swift"; sourceTree = "<group>"; };
+		0ABD660F1B5A33C400AE5C0B /* DefaultCDStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCDStack.swift; sourceTree = "<group>"; };
+		0ABD66101B5A33C400AE5C0B /* iCloudCDStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCloudCDStack.swift; sourceTree = "<group>"; };
+		0ABD66111B5A33C400AE5C0B /* NSManagedObject+SugarRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+SugarRecord.swift"; sourceTree = "<group>"; };
+		0ABD66121B5A33C400AE5C0B /* SugarRecordCDContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SugarRecordCDContext.swift; sourceTree = "<group>"; };
+		0ABD66131B5A33C400AE5C0B /* SugarRecordFinder+FetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SugarRecordFinder+FetchedResultsController.swift"; sourceTree = "<group>"; };
+		0ABD66311B5A35B600AE5C0B /* CocoaChina.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CocoaChina.xcdatamodel; sourceTree = "<group>"; };
+		0ABD66331B5A364C00AE5C0B /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Favorite.swift; path = DataModel/Favorite.swift; sourceTree = "<group>"; };
+		0ABD66351B5A371300AE5C0B /* FavoriteCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCenter.swift; sourceTree = "<group>"; };
+		0ABD66371B5A44E900AE5C0B /* FavoriteRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteRowCell.xib; sourceTree = "<group>"; };
+		0ABD66391B5A456300AE5C0B /* FavoriteRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRowTableViewCell.swift; sourceTree = "<group>"; };
+		0ABD663B1B5A50FC00AE5C0B /* libPods-MBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-MBProgressHUD.a"; path = "Pods/../build/Debug-iphoneos/libPods-MBProgressHUD.a"; sourceTree = "<group>"; };
+		34381C562999CC2EE68BCE4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9A2405CCD427C02F92220B80 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A43E5BF1B4F9776001735FF /* libUMessage_Sdk_1.1.0.a in Frameworks */,
+				BE1E865BBACB3C0A99C71C1B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +256,8 @@
 				0A43E52D1B4F774D001735FF /* CocoaChina */,
 				0A43E5431B4F774D001735FF /* CocoaChinaTests */,
 				0A43E52C1B4F774D001735FF /* Products */,
+				1970F8603F58F951934AD04D /* Pods */,
+				C8323A70E6AFCE65669EFDC7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +273,7 @@
 		0A43E52D1B4F774D001735FF /* CocoaChina */ = {
 			isa = PBXGroup;
 			children = (
+				0ABD662F1B5A356000AE5C0B /* DataModel */,
 				0A43E5501B4F9776001735FF /* Common */,
 				0A43E5901B4F9776001735FF /* View */,
 				0A43E5911B4F9776001735FF /* ViewController */,
@@ -313,6 +358,7 @@
 		0A43E5631B4F9776001735FF /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				0ABD66021B5A33C400AE5C0B /* library */,
 				0A43E5641B4F9776001735FF /* Cartography */,
 				0A43E5791B4F9776001735FF /* Encrpt */,
 				0A43E5841B4F9776001735FF /* IJReachability.swift */,
@@ -399,6 +445,8 @@
 				0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */,
 				0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */,
 				0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */,
+				0ABD66371B5A44E900AE5C0B /* FavoriteRowCell.xib */,
+				0ABD66391B5A456300AE5C0B /* FavoriteRowTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,8 +492,88 @@
 				0A43E5DA1B4FCD38001735FF /* DataContent.swift */,
 				0A43E5DE1B536FC5001735FF /* CocoaCommon.swift */,
 				0A3CFB6C1B54BF36005E40D3 /* PageDataCenter.swift */,
+				0ABD66351B5A371300AE5C0B /* FavoriteCenter.swift */,
 			);
 			path = Center;
+			sourceTree = "<group>";
+		};
+		0ABD66021B5A33C400AE5C0B /* library */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD66031B5A33C400AE5C0B /* Core */,
+				0ABD660C1B5A33C400AE5C0B /* CoreData */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		0ABD66031B5A33C400AE5C0B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD66041B5A33C400AE5C0B /* Protocols */,
+				0ABD66081B5A33C400AE5C0B /* SugarRecord.swift */,
+				0ABD66091B5A33C400AE5C0B /* SugarRecordFinder.swift */,
+				0ABD660A1B5A33C400AE5C0B /* SugarRecordLogger.swift */,
+				0ABD660B1B5A33C400AE5C0B /* SugarRecordResults.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0ABD66041B5A33C400AE5C0B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD66051B5A33C400AE5C0B /* SugarRecordContextProtocol.swift */,
+				0ABD66061B5A33C400AE5C0B /* SugarRecordResultsProtocol.swift */,
+				0ABD66071B5A33C400AE5C0B /* SugarRecordStackProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0ABD660C1B5A33C400AE5C0B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD660D1B5A33C400AE5C0B /* Base */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		0ABD660D1B5A33C400AE5C0B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD660E1B5A33C400AE5C0B /* CDArray+SugarRecordResults.swift */,
+				0ABD660F1B5A33C400AE5C0B /* DefaultCDStack.swift */,
+				0ABD66101B5A33C400AE5C0B /* iCloudCDStack.swift */,
+				0ABD66111B5A33C400AE5C0B /* NSManagedObject+SugarRecord.swift */,
+				0ABD66121B5A33C400AE5C0B /* SugarRecordCDContext.swift */,
+				0ABD66131B5A33C400AE5C0B /* SugarRecordFinder+FetchedResultsController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0ABD662F1B5A356000AE5C0B /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD66301B5A35B600AE5C0B /* CocoaChina.xcdatamodeld */,
+				0ABD66331B5A364C00AE5C0B /* Favorite.swift */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		1970F8603F58F951934AD04D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34381C562999CC2EE68BCE4C /* Pods.debug.xcconfig */,
+				907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C8323A70E6AFCE65669EFDC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD663B1B5A50FC00AE5C0B /* libPods-MBProgressHUD.a */,
+				9A2405CCD427C02F92220B80 /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,9 +583,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A43E54A1B4F774D001735FF /* Build configuration list for PBXNativeTarget "CocoaChina" */;
 			buildPhases = (
+				C1D0DA3C2435EB10545B1409 /* Check Pods Manifest.lock */,
 				0A43E5271B4F774D001735FF /* Sources */,
 				0A43E5281B4F774D001735FF /* Frameworks */,
 				0A43E5291B4F774D001735FF /* Resources */,
+				367BF1869D50EAFA804BF850 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -528,6 +658,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABD66381B5A44E900AE5C0B /* FavoriteRowCell.xib in Resources */,
 				0ABD65CA1B57522E00AE5C0B /* SearchRowCell.xib in Resources */,
 				0A3CFB6F1B54C32D005E40D3 /* alldata.js in Resources */,
 				0A43E5D21B4FA228001735FF /* ListRowCell.xib in Resources */,
@@ -552,6 +683,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		367BF1869D50EAFA804BF850 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1D0DA3C2435EB10545B1409 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0A43E5271B4F774D001735FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -559,30 +723,39 @@
 			files = (
 				0A43E5AF1B4F9776001735FF /* Point.swift in Sources */,
 				0A43E5C31B4F9799001735FF /* BGViewController.swift in Sources */,
+				0ABD66221B5A33C400AE5C0B /* SugarRecordResults.swift in Sources */,
 				0A43E5941B4F9776001735FF /* HPProgress.swift in Sources */,
 				0A43E5B41B4F9776001735FF /* ViewUtils.swift in Sources */,
 				0A43E5BC1B4F9776001735FF /* SwiftyJSON.swift in Sources */,
 				0A43E5921B4F9776001735FF /* BackInputView.swift in Sources */,
+				0ABD66361B5A371300AE5C0B /* FavoriteCenter.swift in Sources */,
 				0A43E5B81B4F9776001735FF /* NSString+Base64.m in Sources */,
 				0A43E5AB1B4F9776001735FF /* Expression.swift in Sources */,
 				0A43E5DF1B536FC5001735FF /* CocoaCommon.swift in Sources */,
 				0A43E5B21B4F9776001735FF /* Size.swift in Sources */,
+				0ABD661D1B5A33C400AE5C0B /* SugarRecordResultsProtocol.swift in Sources */,
+				0ABD66201B5A33C400AE5C0B /* SugarRecordFinder.swift in Sources */,
 				0A43E59F1B4F9776001735FF /* StringExtension.swift in Sources */,
 				0A43E59B1B4F9776001735FF /* CalculateFunc.swift in Sources */,
 				0A43E5961B4F9776001735FF /* WesinDatePicker.swift in Sources */,
+				0ABD66231B5A33C400AE5C0B /* CDArray+SugarRecordResults.swift in Sources */,
 				0A43E59C1B4F9776001735FF /* CommonFunc.swift in Sources */,
 				0A43E5981B4F9776001735FF /* WesinView.swift in Sources */,
 				0A43E5AE1B4F9776001735FF /* LayoutProxy.swift in Sources */,
 				0A43E59E1B4F9776001735FF /* OCCommonFunc.m in Sources */,
 				0A43E5B31B4F9776001735FF /* View.swift in Sources */,
 				0A43E5CD1B4F9836001735FF /* WKDetailViewController.swift in Sources */,
+				0ABD661E1B5A33C400AE5C0B /* SugarRecordStackProtocol.swift in Sources */,
 				0A43E5B01B4F9776001735FF /* Priority.swift in Sources */,
+				0ABD66321B5A35B600AE5C0B /* CocoaChina.xcdatamodeld in Sources */,
+				0ABD66241B5A33C400AE5C0B /* DefaultCDStack.swift in Sources */,
 				0A43E5A91B4F9776001735FF /* Edge.swift in Sources */,
 				0A3CFB6D1B54BF36005E40D3 /* PageDataCenter.swift in Sources */,
 				0A43E5DB1B4FCD38001735FF /* DataContent.swift in Sources */,
 				0A43E5B91B4F9776001735FF /* NSString+Encrypto.m in Sources */,
 				0AB7FADB1B565D3500B87898 /* ContentListRowTableViewCell.swift in Sources */,
 				0A43E5CB1B4F9820001735FF /* DetailViewController.swift in Sources */,
+				0ABD66281B5A33C400AE5C0B /* SugarRecordFinder+FetchedResultsController.swift in Sources */,
 				0A43E5C51B4F97E0001735FF /* LeadViewController.swift in Sources */,
 				0AB7FAD31B55F9C300B87898 /* ListRowDetailTableViewCell.swift in Sources */,
 				0A43E5A41B4F9776001735FF /* Constraint.swift in Sources */,
@@ -595,13 +768,18 @@
 				0A43E5C01B4F9776001735FF /* ToLeftTransition.swift in Sources */,
 				0A43E59D1B4F9776001735FF /* MessageShow.swift in Sources */,
 				0A43E5AA1B4F9776001735FF /* Edges.swift in Sources */,
+				0ABD66211B5A33C400AE5C0B /* SugarRecordLogger.swift in Sources */,
+				0ABD661C1B5A33C400AE5C0B /* SugarRecordContextProtocol.swift in Sources */,
 				0ABD65C81B574DF500AE5C0B /* SearchViewController.swift in Sources */,
 				0A43E5A21B4F9776001735FF /* Coefficients.swift in Sources */,
 				0A43E5BB1B4F9776001735FF /* NSDate+WSDateTools.m in Sources */,
 				0A43E5D41B4FA3AC001735FF /* ListRowTableViewCell.swift in Sources */,
 				0A43E5C91B4F9814001735FF /* ListCommonViewController.swift in Sources */,
+				0ABD66341B5A364C00AE5C0B /* Favorite.swift in Sources */,
+				0ABD66271B5A33C400AE5C0B /* SugarRecordCDContext.swift in Sources */,
 				0A43E5C11B4F9776001735FF /* ToRightTransition.swift in Sources */,
 				0A43E5BA1B4F9776001735FF /* IJReachability.swift in Sources */,
+				0ABD66251B5A33C400AE5C0B /* iCloudCDStack.swift in Sources */,
 				0ABD65CC1B57531C00AE5C0B /* SearchRowTableViewCell.swift in Sources */,
 				0A43E5951B4F9776001735FF /* HPSwitch.swift in Sources */,
 				0A43E5A61B4F9776001735FF /* Context.swift in Sources */,
@@ -611,6 +789,8 @@
 				0A43E5B11B4F9776001735FF /* Property.swift in Sources */,
 				0A43E5BE1B4F9776001735FF /* UIImage+GIF.swift in Sources */,
 				0A43E5A81B4F9776001735FF /* Distribute.swift in Sources */,
+				0ABD663A1B5A456300AE5C0B /* FavoriteRowTableViewCell.swift in Sources */,
+				0ABD66261B5A33C400AE5C0B /* NSManagedObject+SugarRecord.swift in Sources */,
 				0A43E5A01B4F9776001735FF /* SystemInfo.swift in Sources */,
 				0A43E5991B4F9776001735FF /* Animator.swift in Sources */,
 				0A43E5AD1B4F9776001735FF /* Layout.swift in Sources */,
@@ -618,6 +798,7 @@
 				0AB7FAD51B56344300B87898 /* LeadListViewController.swift in Sources */,
 				0A43E5931B4F9776001735FF /* HPImageView.swift in Sources */,
 				0A43E5311B4F774D001735FF /* AppDelegate.swift in Sources */,
+				0ABD661F1B5A33C400AE5C0B /* SugarRecord.swift in Sources */,
 				0A43E5BD1B4F9776001735FF /* SWXMLHash.swift in Sources */,
 				0A43E5AC1B4F9776001735FF /* Extensions.swift in Sources */,
 			);
@@ -663,6 +844,7 @@
 /* Begin XCBuildConfiguration section */
 		0A43E5481B4F774D001735FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34381C562999CC2EE68BCE4C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -708,6 +890,7 @@
 		};
 		0A43E5491B4F774D001735FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -746,6 +929,7 @@
 		};
 		0A43E54B1B4F774D001735FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34381C562999CC2EE68BCE4C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CocoaChina/Info.plist;
@@ -753,6 +937,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CocoaChina/Common/ThirdParty/UMeng",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -760,6 +945,7 @@
 		};
 		0A43E54C1B4F774D001735FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CocoaChina/Info.plist;
@@ -767,6 +953,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CocoaChina/Common/ThirdParty/UMeng",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -793,6 +980,7 @@
 		};
 		0A43E54F1B4F774D001735FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -837,6 +1025,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0ABD66301B5A35B600AE5C0B /* CocoaChina.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0ABD66311B5A35B600AE5C0B /* CocoaChina.xcdatamodel */,
+			);
+			currentVersion = 0ABD66311B5A35B600AE5C0B /* CocoaChina.xcdatamodel */;
+			name = CocoaChina.xcdatamodeld;
+			path = DataModel/CocoaChina.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0A43E5231B4F774D001735FF /* Project object */;
 }

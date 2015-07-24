@@ -20,14 +20,23 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableList: UITableView!
     
+    var header:MJRefreshNormalHeader?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataSource("content", type: "js", urlStr: url)
+        getDataSource()
         navItem.title = txtTitle
         tableList.tableFooterView = UIView(frame: CGRectZero)
         pageType = .Content
         tableList.registerNib(UINib(nibName: "ContentListRowCell", bundle: nil), forCellReuseIdentifier: "contentlistrowcell")
         dataSource = [DataContent]()
+        
+        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("getDataSource"))
+        header?.lastUpdatedTimeLabel.hidden = true
+        header?.setTitle("下拉刷新", forState: MJRefreshStateIdle)
+        header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
+        header?.setTitle("松开结束", forState: MJRefreshStatePulling)
+        tableList.header = header
     }
     
     @IBAction func back(sender: UIBarButtonItem) {
@@ -67,6 +76,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
                 }
             }
         }
+        header?.endRefreshing()
     }
     
     /**
@@ -75,13 +85,13 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     :param: name	文件名
     :param: type	文件后缀名
     */
-    private func getDataSource(name:String, type:String, urlStr:String) {
+    func getDataSource() {
         webView?.removeFromSuperview()
         webView = nil
-        let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
+        let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
         config.userContentController.addScriptMessageHandler(self, name: MessageHandler.ContentHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+        webView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
         self.view.addSubview(webView!)
     }
 }

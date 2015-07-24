@@ -63,8 +63,8 @@ class MessageShow {
         })
     }
     
-    func showMessageAutoHide(msgType:MessageType, withMessage msg:String) {
-        asyncShowMessage(msgType, withMessage: msg, boolAutoHide: true)
+    func showMessageAutoHide(msg:String) {
+        asyncShowMessage(MessageType.Show, withMessage: msg, boolAutoHide: true)
     }
     
     //MARK:Singleton--

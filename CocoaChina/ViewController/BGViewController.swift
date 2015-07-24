@@ -64,7 +64,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     :param: name	文件名
     :param: type	文件后缀名
     */
-    private func getDataSource(name:String, type:String, urlStr:String) {
+    func getDataSource(name:String, type:String, urlStr:String) {
         let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
         config.userContentController.addScriptMessageHandler(self, name: MessageHandler.MainHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)

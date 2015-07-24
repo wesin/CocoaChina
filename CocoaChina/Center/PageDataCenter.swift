@@ -12,6 +12,10 @@ let mainUrl = "http://www.cocoachina.com"
 
 class PageDataCenter:NSObject {
     
+    private override init() {
+        FavoriteCenter.instance
+    }
+    
     private static let a = PageDataCenter()
     
     static var instance : PageDataCenter {
@@ -75,5 +79,18 @@ class PageDataCenter:NSObject {
             }
         }
         return nil
+    }
+    
+    /**
+    获取收藏列表
+    */
+    func getFavoriteList() {
+        let data = FavoriteCenter.instance.getFavoriteList()
+        var tempData = [DataContent]()
+        for temp in data {
+            let favorite = temp as! Favorite
+            tempData.append(DataContent(item: favorite))
+        }
+        PageDataCenter.instance.dataAll[ListType.Favorite] = tempData
     }
 }
