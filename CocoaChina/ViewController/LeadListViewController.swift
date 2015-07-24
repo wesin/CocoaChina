@@ -9,6 +9,19 @@
 import UIKit
 import WebKit
 
+class LeakAvoider : NSObject, WKScriptMessageHandler {
+    weak var delegate : WKScriptMessageHandler?
+    init(delegate:WKScriptMessageHandler) {
+        self.delegate = delegate
+        super.init()
+    }
+    func userContentController(userContentController: WKUserContentController,
+        didReceiveScriptMessage message: WKScriptMessage) {
+            self.delegate?.userContentController(
+                userContentController, didReceiveScriptMessage: message)
+    }
+}
+
 class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     
     var url = ""
@@ -45,8 +58,11 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         tableList.footer = footer
     }
     
+    
+    
     deinit {
         println("LeadList deinit")
+        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.ContentHandler.rawValue)
     }
     
     @IBAction func back(sender: UIBarButtonItem) {
@@ -104,11 +120,12 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     :param: type	文件后缀名
     */
     func getDataSource() {
+        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.ContentHandler.rawValue)
         webView?.removeFromSuperview()
         webView = nil
         let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
         headerFreshConfig = config.userContentController
-        config.userContentController.addScriptMessageHandler(self, name: MessageHandler.ContentHandler.rawValue)
+        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.ContentHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
         webView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
         self.view.addSubview(webView!)
@@ -116,14 +133,15 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     
     func getNextData() {
         if nextUrl == "" {
-            footer?.setTitle("已是最后一页", forState: MJRefreshStateNoMoreData)
-            footer?.endRefreshing()
+            footer?.noticeNoMoreData()
+//            footer?.endRefreshing()
             return
         }
+        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.ContentHandler.rawValue)
         webView?.removeFromSuperview()
         webView = nil
         let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(self, name: MessageHandler.ContentHandler.rawValue)
+        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.ContentHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
         webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
         self.view.addSubview(webView!)

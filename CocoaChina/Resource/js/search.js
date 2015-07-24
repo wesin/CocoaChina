@@ -13,6 +13,27 @@ function parseResultList() {
 	return list
 }
 
-var result = {'result':parseResultList()}
+
+function getNextPageUrl() {
+    var list = document.querySelectorAll('.pagelist td')
+    if (list.length == 0) {
+        return null
+    }
+    var item = list[0]
+    for (var i = 0; i < list.length; ++i) {
+        item = list[i]
+        if (item.childElementCount > 0) {
+            continue
+        }
+        if (item.attributes.length > 0) {
+            continue
+        }
+        break
+    }
+    
+    return item.nextElementSibling.querySelector('a').getAttribute('href')
+}
+
+var result = {'result':parseResultList(), 'nexturl':getNextPageUrl()}
 
 webkit.messageHandlers.searchhandler.postMessage(result);

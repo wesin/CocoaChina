@@ -26,6 +26,10 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
 
     }
     
+    deinit{
+        println("bgview deinit")
+    }
+    
     //MARK:WKScriptMessageHandler
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         if message.name == MessageHandler.MainHandler.rawValue {
@@ -66,7 +70,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     */
     func getDataSource(name:String, type:String, urlStr:String) {
         let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(self, name: MessageHandler.MainHandler.rawValue)
+        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
 //                webView.navigationDelegate = self
         //        webView.loadRequest(NSURLRequest(URL: ))

@@ -22,6 +22,10 @@ class DetailViewController: UIViewController {
         
     }
     
+    deinit {
+        println("Detail deinit")
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let webView = segue.destinationViewController as! WKDetailViewController
         if content!.url.hasPrefix("/") {

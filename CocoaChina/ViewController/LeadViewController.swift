@@ -15,7 +15,8 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
     var parentView:UIViewController?
     
     var leadSource:[(url:String, title:String)]?
-    var listDic = [String:LeadListViewController]()
+//    var listDic = [String:LeadListViewController]()
+    var leadList:LeadListViewController?
     var settingView:SettingViewController?
     
     var headImage:UIImage?
@@ -84,14 +85,21 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
         }
         let content = leadSource![indexPath.row - 1]
         let url = mainUrl + "//" + content.url
-        var viewTmp = listDic[url]
-        if viewTmp == nil {
-            viewTmp = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewleadlist") as? LeadListViewController
-            viewTmp?.txtTitle = content.title
-            viewTmp?.url = url
-        }
-        viewTmp?.transitioningDelegate = self
-        CommonFunc.presentView(parentView!, toVC: viewTmp!)
+        leadList = nil
+        leadList = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewleadlist") as? LeadListViewController
+        leadList?.txtTitle = content.title
+        leadList?.url = url
+        leadList?.transitioningDelegate = self
+        CommonFunc.presentView(parentView!, toVC: leadList!)
+        
+//        var viewTmp = listDic[url]
+//        if viewTmp == nil {
+//            viewTmp = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewleadlist") as? LeadListViewController
+//            viewTmp?.txtTitle = content.title
+//            viewTmp?.url = url
+//        }
+//        viewTmp?.transitioningDelegate = self
+//        CommonFunc.presentView(parentView!, toVC: viewTmp!)
         
     }
     

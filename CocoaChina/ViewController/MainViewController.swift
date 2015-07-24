@@ -177,10 +177,11 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
     :param: type	文件后缀名
     */
     func getDataSource() {
+        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.MainHandler.rawValue)
         webView?.removeFromSuperview()
         webView = nil
         let config = CocoaCommon.getConfig("alldata", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(self, name: MessageHandler.MainHandler.rawValue)
+        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
         //                webView.navigationDelegate = self
         //        webView.loadRequest(NSURLRequest(URL: ))
