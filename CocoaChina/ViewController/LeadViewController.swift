@@ -20,6 +20,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
     var settingView:SettingViewController?
     
     var headImage:UIImage?
+    var selectColor:UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
         tableLead.tableFooterView = UIView(frame: CGRectZero)
         headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("changehead:"), name: "changehead", object: nil)
+        selectColor = UIColor(red: 65/255, green: 174/255, blue: 247/255, alpha: 1)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -64,13 +66,13 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
             let cell = tableView.dequeueReusableCellWithIdentifier("headrowcell", forIndexPath: indexPath) as! HeadRowTableViewCell
             cell.imgHead.image = headImage
             cell.selectedBackgroundView = UIView(frame: cell.frame)
-            cell.selectedBackgroundView.backgroundColor = UIColor.darkGrayColor()
+            cell.selectedBackgroundView.backgroundColor = selectColor
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("leadrowcell", forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = leadSource![indexPath.row - 1].title
             cell.selectedBackgroundView = UIView(frame: cell.frame)
-            cell.selectedBackgroundView.backgroundColor = UIColor.darkGrayColor()
+            cell.selectedBackgroundView.backgroundColor = selectColor
             return cell
         }
     }

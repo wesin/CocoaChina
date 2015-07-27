@@ -38,6 +38,8 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     
     weak var headerFreshConfig:WKUserContentController?
     
+    var hud:MBProgressHUD?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataSource()
@@ -56,6 +58,11 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         
         footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("getNextData"))
         tableList.footer = footer
+        
+        hud = MBProgressHUD(view: self.view)
+        self.view.addSubview(hud!)
+        hud?.labelText = "刷新中..."
+        hud?.show(true)
     }
     
     
@@ -111,6 +118,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         }
         header?.endRefreshing()
         footer?.endRefreshing()
+        hud?.hide(true)
     }
     
     /**

@@ -37,6 +37,14 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
         return 44
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 10
+        } else {
+            return 2.5
+        }
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0,0):

@@ -130,6 +130,10 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         return pageType == .Favorite
     }
     
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+        return "删除"
+    }
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             FavoriteCenter.instance.deleteFavoriteByIndex(indexPath.row)

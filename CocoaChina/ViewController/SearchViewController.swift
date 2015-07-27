@@ -90,16 +90,15 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
                         if let data = value as? [[String:AnyObject]] {
                             if lastKeyWords != searchBar.text {
                                 self.dataSource!.removeAll(keepCapacity: false)
-                                lastKeyWords = searchBar.text
-
                             }
                             data.map(){
                                 self.dataSource!.append(DataContent(contentObj: $0))
                             }
                             tableResult.reloadData()
-                            if dataSource!.count > 0 {
+                            if dataSource!.count > 0 && lastKeyWords != searchBar.text {
                                 tableResult.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
                             }
+                            lastKeyWords = searchBar.text
                         }
                     } else {
                         if value as? String == nil {

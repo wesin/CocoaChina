@@ -11,12 +11,19 @@ import WebKit
 
 class BGViewController:UIViewController,WKScriptMessageHandler {
     
+    @IBOutlet weak var imgBG: UIImageView!
+    
     var mainView:MainViewController?
     var leadView:LeadViewController?
     var webView:WKWebView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        imgBG.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("launchbg", ofType: "jpg")!)
+        
         getDataSource("alldata", type: "js", urlStr: mainUrl)
         getDataSource("special", type: "js", urlStr: mainUrl + "//special")
     }
@@ -59,7 +66,10 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     
     private func showView() {
         mainView = CommonFunc.getViewFromStoryBoard("Main", viewIndetifier: "viewmain") as? MainViewController
-        self.presentViewController(mainView!, animated: false, completion: nil)
+        //翻转
+        mainView?.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        mainView?.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        self.presentViewController(mainView!, animated: true, completion: nil)
     }
     
     /**

@@ -82,6 +82,8 @@
 		0AB7FAD71B56415700B87898 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD61B56415700B87898 /* content.js */; };
 		0AB7FAD91B565D0700B87898 /* ContentListRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */; };
 		0AB7FADB1B565D3500B87898 /* ContentListRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */; };
+		0ABB6C671B65CEFD00FB87CF /* launchbg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ABB6C661B65CEFD00FB87CF /* launchbg.jpg */; };
+		0ABB6C691B65D33600FB87CF /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB6C681B65D33600FB87CF /* LaunchView.swift */; };
 		0ABD65C81B574DF500AE5C0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD65C71B574DF500AE5C0B /* SearchViewController.swift */; };
 		0ABD65CA1B57522E00AE5C0B /* SearchRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */; };
 		0ABD65CC1B57531C00AE5C0B /* SearchRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */; };
@@ -206,6 +208,8 @@
 		0AB7FAD61B56415700B87898 /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		0AB7FAD81B565D0700B87898 /* ContentListRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentListRowCell.xib; sourceTree = "<group>"; };
 		0AB7FADA1B565D3500B87898 /* ContentListRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentListRowTableViewCell.swift; sourceTree = "<group>"; };
+		0ABB6C661B65CEFD00FB87CF /* launchbg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchbg.jpg; sourceTree = "<group>"; };
+		0ABB6C681B65D33600FB87CF /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		0ABD65C71B574DF500AE5C0B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0ABD65C91B57522E00AE5C0B /* SearchRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchRowCell.xib; sourceTree = "<group>"; };
 		0ABD65CB1B57531C00AE5C0B /* SearchRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRowTableViewCell.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 				0A43E5D51B4FC983001735FF /* Resource */,
 				0A43E5371B4F774D001735FF /* Images.xcassets */,
 				0A43E5391B4F774D001735FF /* LaunchScreen.xib */,
+				0ABB6C681B65D33600FB87CF /* LaunchView.swift */,
 				0A43E52F1B4F774D001735FF /* Info.plist */,
 				0A43E5D01B4F9BCD001735FF /* CocoaChina-Bridging-Header.h */,
 			);
@@ -475,6 +480,7 @@
 		0A43E5D51B4FC983001735FF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0ABB6C651B65CEFD00FB87CF /* image */,
 				0A43E5D61B4FC983001735FF /* js */,
 			);
 			path = Resource;
@@ -509,6 +515,14 @@
 				0A8C1F431B61D5F000C26A1C /* SettingViewController.swift */,
 			);
 			name = Setting;
+			sourceTree = "<group>";
+		};
+		0ABB6C651B65CEFD00FB87CF /* image */ = {
+			isa = PBXGroup;
+			children = (
+				0ABB6C661B65CEFD00FB87CF /* launchbg.jpg */,
+			);
+			path = image;
 			sourceTree = "<group>";
 		};
 		0ABD66021B5A33C400AE5C0B /* library */ = {
@@ -641,6 +655,7 @@
 				TargetAttributes = {
 					0A43E52A1B4F774D001735FF = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = DJ4AGN3SJB;
 					};
 					0A43E53F1B4F774D001735FF = {
 						CreatedOnToolsVersion = 6.4;
@@ -683,6 +698,7 @@
 				0AB7FAD71B56415700B87898 /* content.js in Resources */,
 				0A43E53B1B4F774D001735FF /* LaunchScreen.xib in Resources */,
 				0AB7FAD91B565D0700B87898 /* ContentListRowCell.xib in Resources */,
+				0ABB6C671B65CEFD00FB87CF /* launchbg.jpg in Resources */,
 				0ABD65CE1B5793F400AE5C0B /* search.js in Resources */,
 				0A43E5381B4F774D001735FF /* Images.xcassets in Resources */,
 			);
@@ -802,6 +818,7 @@
 				0A43E5A51B4F9776001735FF /* ConstraintGroup.swift in Sources */,
 				0A43E5B71B4F9776001735FF /* NSData+CommonCrypto.m in Sources */,
 				0A43E5B11B4F9776001735FF /* Property.swift in Sources */,
+				0ABB6C691B65D33600FB87CF /* LaunchView.swift in Sources */,
 				0A43E5BE1B4F9776001735FF /* UIImage+GIF.swift in Sources */,
 				0A43E5A81B4F9776001735FF /* Distribute.swift in Sources */,
 				0ABD663A1B5A456300AE5C0B /* FavoriteRowTableViewCell.swift in Sources */,
@@ -948,6 +965,8 @@
 			baseConfigurationReference = 34381C562999CC2EE68BCE4C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: // / (35V9P7Q256)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: // / (35V9P7Q256)";
 				INFOPLIST_FILE = CocoaChina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -956,6 +975,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "71ada3e8-0bf7-4433-82f3-63ae7402115f";
 			};
 			name = Debug;
 		};
@@ -964,6 +984,8 @@
 			baseConfigurationReference = 907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: // / (35V9P7Q256)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: // / (35V9P7Q256)";
 				INFOPLIST_FILE = CocoaChina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -972,6 +994,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "71ada3e8-0bf7-4433-82f3-63ae7402115f";
 			};
 			name = Release;
 		};

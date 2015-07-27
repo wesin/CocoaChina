@@ -30,7 +30,9 @@ function getNextPageUrl() {
         }
         break
     }
-    
+    if (item.nextElementSibling.querySelector('a') == null) {
+        return null
+    }
     return item.nextElementSibling.querySelector('a').getAttribute('href')
 }
 
