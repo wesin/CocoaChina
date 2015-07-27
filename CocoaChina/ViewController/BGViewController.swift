@@ -24,6 +24,15 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         
         imgBG.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("launchbg", ofType: "jpg")!)
         
+        if IJReachability.isConnectedToNetworkOfType() == IJReachabilityType.NotConnected {
+            MessageShow.ShareInstance.errorMessage = "网络连接失败!请检查设置"
+            return
+        }
+        if !IJReachability.isConnectedToNetwork() {
+            MessageShow.ShareInstance.errorMessage = "网络连接失败!请检查设置"
+            return
+        }
+        
         getDataSource("alldata", type: "js", urlStr: mainUrl)
         getDataSource("special", type: "js", urlStr: mainUrl + "//special")
     }
