@@ -122,14 +122,15 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
     :param: type	文件后缀名
     */
     private func getDataSource(name:String, type:String, urlStr:String) {
-        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.SearchHandler.rawValue)
-        webView?.removeFromSuperview()
-        webView == nil
-        let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.SearchHandler.rawValue)
-        webView = WKWebView(frame: CGRectZero, configuration: config)
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
-        self.view.addSubview(webView!)
+        if webView == nil {
+            let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
+            config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.SearchHandler.rawValue)
+            webView = WKWebView(frame: CGRectZero, configuration: config)
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+            self.view.addSubview(webView!)
+        } else {
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!))
+        }
     }
     
     /**
@@ -143,14 +144,8 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
             footer?.noticeNoMoreData()
             return
         }
-        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.SearchHandler.rawValue)
-        webView?.removeFromSuperview()
-        webView == nil
-        let config = CocoaCommon.getConfig("search", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.SearchHandler.rawValue)
-        webView = WKWebView(frame: CGRectZero, configuration: config)
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
-        self.view.addSubview(webView!)
+        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!))
+        
     }
     
 

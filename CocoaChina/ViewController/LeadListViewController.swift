@@ -36,8 +36,6 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     var header:MJRefreshNormalHeader?
     var footer:MJRefreshBackNormalFooter?
     
-    weak var headerFreshConfig:WKUserContentController?
-    
     var hud:MBProgressHUD?
     
     override func viewDidLoad() {
@@ -92,12 +90,12 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         if message.name == MessageHandler.ContentHandler.rawValue {
             if let contentDic = message.body as? [String:AnyObject] {
+                if contentDic["preurl"] as? String == nil {
+                    self.dataSource?.removeAll()
+                }
                 for (key,value) in contentDic {
 //                    var tempData = [DataContent]()
                     if key == "content" {
-                        if headerFreshConfig == userContentController {
-                            self.dataSource?.removeAll(keepCapacity: true)
-                        }
                         if let data = value as? [[String:AnyObject]] {
                             data.map(){
                                 self.dataSource?.append(DataContent(contentObj: $0))
@@ -106,7 +104,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
                                 tableList.reloadData()
                             }
                         }
-                    } else {
+                    } else if key == "nexturl" {
                         if value as? String == nil {
                             nextUrl = ""
                         } else {
@@ -128,30 +126,22 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     :param: type	文件后缀名
     */
     func getDataSource() {
-        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.ContentHandler.rawValue)
-        webView?.removeFromSuperview()
-        webView = nil
-        let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        headerFreshConfig = config.userContentController
-        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.ContentHandler.rawValue)
-        webView = WKWebView(frame: CGRectZero, configuration: config)
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
-        self.view.addSubview(webView!)
+        if webView == nil {
+            let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
+            config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.ContentHandler.rawValue)
+            webView = WKWebView(frame: CGRectZero, configuration: config)
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+            self.view.addSubview(webView!)
+        } else {
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
+        }
     }
     
     func getNextData() {
         if nextUrl == "" {
             footer?.noticeNoMoreData()
-//            footer?.endRefreshing()
             return
         }
-        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.ContentHandler.rawValue)
-        webView?.removeFromSuperview()
-        webView = nil
-        let config = CocoaCommon.getConfig("content", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.ContentHandler.rawValue)
-        webView = WKWebView(frame: CGRectZero, configuration: config)
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
-        self.view.addSubview(webView!)
+        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl)!))
     }
 }

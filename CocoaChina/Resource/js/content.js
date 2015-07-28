@@ -12,8 +12,9 @@ function parseContentList() {
 		var click = item.querySelectorAll('.float-l span')[1].textContent
 		list.push({'title':title, 'content':content,'imgurl':imgUrl, 'time':time,'click':click,'url':url})
 	}
+    var preUrl = document.querySelector('.thisclass').previousElementSibling.getAttribute('href')
 	var nextUrl = document.querySelector('.thisclass').nextSibling.getAttribute('href')
-	return {"content":list, "nexturl":nextUrl}
+	return {"content":list, "nexturl":nextUrl,"preurl":preUrl}
 }
 
 webkit.messageHandlers.contenthandler.postMessage(parseContentList());

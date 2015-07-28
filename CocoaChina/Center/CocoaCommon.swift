@@ -12,17 +12,16 @@ import WebKit
 class CocoaCommon {
     static func getConfig(name:String, extend:String, injection:WKUserScriptInjectionTime) -> WKWebViewConfiguration {
         let config = WKWebViewConfiguration()
-        var scriptJS = jsDic[name]
-        if scriptJS == nil {
+        var script = jsDic[name]
+        if script == nil {
             let resource = NSBundle.mainBundle().pathForResource(name, ofType: extend)
-            scriptJS = String(contentsOfFile: resource!, encoding: NSUTF8StringEncoding, error: nil)
-            jsDic[name] = scriptJS
+            let scriptJS = String(contentsOfFile: resource!, encoding: NSUTF8StringEncoding, error: nil)
+            script = WKUserScript(source: scriptJS!, injectionTime: injection, forMainFrameOnly: true)
+            jsDic[name] = script
         }
-        
-        let script = WKUserScript(source: scriptJS!, injectionTime: injection, forMainFrameOnly: true)
-        config.userContentController.addUserScript(script)
+        config.userContentController.addUserScript(script!)
         return config
     }
     
-    static var jsDic = [String:String]()
+    static var jsDic = [String:WKUserScript]()
 }

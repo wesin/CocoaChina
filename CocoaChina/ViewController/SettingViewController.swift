@@ -139,6 +139,7 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
     }
     
     func clearCache() {
+        PageDataCenter.instance.imageDic.removeAll()
         let manager = NSFileManager.defaultManager()
         manager.removeItemAtPath(PageDataCenter.instance.imagePath, error: nil)
         tableSetting.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 1)], withRowAnimation: .None)

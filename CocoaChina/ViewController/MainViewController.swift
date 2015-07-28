@@ -181,16 +181,20 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
     :param: type	文件后缀名
     */
     func getDataSource() {
-        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.MainHandler.rawValue)
-        webView?.removeFromSuperview()
-        webView = nil
-        let config = CocoaCommon.getConfig("alldata", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
-        config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)
-        webView = WKWebView(frame: CGRectZero, configuration: config)
-        //                webView.navigationDelegate = self
-        //        webView.loadRequest(NSURLRequest(URL: ))
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: mainUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
-        self.view.addSubview(webView!)
+//        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.MainHandler.rawValue)
+//        webView?.removeFromSuperview()
+//        webView = nil
+        if webView == nil {
+            let config = CocoaCommon.getConfig("alldata", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
+            config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)
+            webView = WKWebView(frame: CGRectZero, configuration: config)
+            //                webView.navigationDelegate = self
+            //        webView.loadRequest(NSURLRequest(URL: ))
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: mainUrl)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+            self.view.addSubview(webView!)
+        } else {
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: mainUrl)!))
+        }
     }
     
 }
