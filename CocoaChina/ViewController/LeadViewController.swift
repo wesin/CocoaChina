@@ -33,6 +33,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        CalculateFunc.beginPage("LeaderView")
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -40,6 +41,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
             tableLead.deselectRowAtIndexPath(index, animated: false)
         }
         super.viewDidDisappear(animated)
+        CalculateFunc.endPage("LeaderView")
     }
     
     deinit {

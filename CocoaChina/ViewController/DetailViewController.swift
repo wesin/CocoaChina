@@ -22,6 +22,19 @@ class DetailViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if content!.url.hasPrefix("/") {
+            content?.url = mainUrl + content!.url
+        }
+        CalculateFunc.beginPage("Detail:" + content!.url)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        CalculateFunc.endPage("Detail:" + content!.url)
+    }
+    
     deinit {
         println("Detail deinit")
     }

@@ -36,6 +36,16 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         tableResult.footer = footer
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        CalculateFunc.beginPage("SearchView")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        CalculateFunc.endPage("SearchView")
+    }
+    
     deinit{
         println("search deinit")
     }

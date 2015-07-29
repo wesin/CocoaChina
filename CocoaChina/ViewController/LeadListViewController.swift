@@ -67,6 +67,16 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        CalculateFunc.beginPage("List:" + url)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        CalculateFunc.endPage("List:" + url)
+    }
+    
     
     
     deinit {

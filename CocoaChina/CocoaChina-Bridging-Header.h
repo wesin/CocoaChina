@@ -10,6 +10,7 @@
 #define CocoaChina_CocoaChina_Bridging_Header_h
 
 #import "NSDate+WSDateTools.h"
+#import "MobClick.h"
 #import "OCCommonFunc.h"
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"

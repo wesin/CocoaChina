@@ -120,6 +120,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         pageType = ListType(rawValue: index)!
         if pageType == ListType.Favorite {
             PageDataCenter.instance.getFavoriteList()
+            CalculateFunc.beginPage("FavoriteView")
         }
         dataSource = PageDataCenter.instance.dataAll[pageType]
         refreshView()
