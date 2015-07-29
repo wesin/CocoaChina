@@ -21,6 +21,10 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
     
     var pageType = ListType.Main
     
+    
+    /// 当数量超出一定数量时不再加载
+    var maxCount = 1000
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,8 +47,11 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
         switch pageType {
         case .Main, .Special:
             let cell = tableView.dequeueReusableCellWithIdentifier("listrowdetailcell", forIndexPath: indexPath) as! ListRowDetailTableViewCell
-            if let data = PageDataCenter.instance.loadImage(content.imgurl) {
+            if let data = PageDataCenter.instance.loadImageLoacation(content.imgurl) {
                 cell.imgTitle.image = UIImage(data: data)
+            } else {
+                cell.imgTitle.image = UIImage(named: "logo")
+                getImage(cell, index: indexPath)
             }
             cell.labelTitle.text = content.title
             cell.labelDetail.text = content.content
@@ -52,8 +59,11 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
         case .New:
             let cell = tableView.dequeueReusableCellWithIdentifier("listrowcell", forIndexPath: indexPath) as! ListRowTableViewCell
             
-            if let data = PageDataCenter.instance.loadImage(content.imgurl) {
+            if let data = PageDataCenter.instance.loadImageLoacation(content.imgurl) {
                 cell.imgTitle.image = UIImage(data: data)
+            } else {
+                cell.imgTitle.image = UIImage(named: "logo")
+                getImage(cell, index: indexPath)
             }
             cell.labelTitle.text = content.title
             cell.labelTime.text = content.time
@@ -84,6 +94,30 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ToRightTransition()
+    }
+    
+    /**
+    异步加载图片
+    
+    :param: index	cell indexpath
+    */
+    func getImage(cell:UITableViewCell, index:NSIndexPath) {
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        dispatch_async(queue) {
+            if let data = PageDataCenter.instance.loadImage(self.dataSource![index.row].imgurl) {
+                if let cellTmp = cell as? ListRowDetailTableViewCell {
+                    dispatch_sync(dispatch_get_main_queue()) {
+                        cellTmp.imgTitle.image = UIImage(data: data)
+                    }
+                } else if let cellTmp = cell as? ListRowTableViewCell {
+                    dispatch_sync(dispatch_get_main_queue()) {
+                        cellTmp.imgTitle.image = UIImage(data: data)
+                    }
+                }
+                
+                
+            }
+        }
     }
 
 }

@@ -38,6 +38,8 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     
     var hud:MBProgressHUD?
     
+    var timer:NSTimer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataSource()
@@ -61,6 +63,8 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         self.view.addSubview(hud!)
         hud?.labelText = "刷新中..."
         hud?.show(true)
+        timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
+        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
     
     
@@ -77,13 +81,23 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let content = dataSource![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("contentlistrowcell", forIndexPath: indexPath) as! ContentListRowTableViewCell
-        if let data = PageDataCenter.instance.loadImage(content.imgurl) {
+        if let data = PageDataCenter.instance.loadImageLoacation(content.imgurl) {
             cell.imgTitle.image = UIImage(data: data)
+        } else {
+            cell.imgTitle.image = UIImage(named: "logo")
+            getImage(indexPath)
         }
         cell.labelTitle.text = content.title
         cell.labelTime.text = content.time
         cell.labelClick.text = content.click
         return cell
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row == self.dataSource!.count - 5 {
+            getNextData()
+        }
     }
     
     //MARK:WKScriptMessageHandler
@@ -105,7 +119,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
                             }
                         }
                     } else if key == "nexturl" {
-                        if value as? String == nil {
+                        if value as? String == nil || self.dataSource?.count > maxCount {
                             nextUrl = ""
                         } else {
                             nextUrl = url + "//" + (value as! String)
@@ -117,6 +131,26 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         header?.endRefreshing()
         footer?.endRefreshing()
         hud?.hide(true)
+        timer?.invalidate()
+    }
+    
+    /**
+    异步加载图片
+    
+    :param: index	cell indexpath
+    */
+    func getImage(index:NSIndexPath) {
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        dispatch_async(queue) {
+            if let data = PageDataCenter.instance.loadImage(self.dataSource![index.row].imgurl) {
+                if let cell = self.tableList.cellForRowAtIndexPath(index) as? ContentListRowTableViewCell {
+                    dispatch_sync(dispatch_get_main_queue()) {
+                        cell.imgTitle.image = UIImage(data: data)
+                    }
+                }
+                
+            }
+        }
     }
     
     /**
@@ -143,5 +177,15 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
             return
         }
         webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl)!))
+    }
+    
+    func stopLoading() {
+        if IJReachability.isConnectedToNetwork() {
+            hud?.labelText = "网络延迟"
+        } else {
+            hud?.labelText = "网络连接失败"
+        }
+        hud?.show(true)
+        hud?.hide(true, afterDelay: 2)
     }
 }

@@ -49,13 +49,13 @@ class PageDataCenter:NSObject {
     }
     
     /**
-    根据url地址获取图片
+    根据url地址从本地获取图片
     
     :param: imgUrl	图片地址
     
     :returns: 返回图片数据
     */
-    func loadImage(imgUrl:String) -> NSData? {
+    func loadImageLoacation(imgUrl:String) -> NSData? {
         var imgRealUrl = imgUrl
         let fileManager = NSFileManager.defaultManager()
         if !fileManager.fileExistsAtPath(imagePath) {
@@ -75,9 +75,28 @@ class PageDataCenter:NSObject {
             imageDic[fileName] = fileName
             return NSData(contentsOfFile: filePath)
         }
-        //无奈了只能去服务端重新取了
+        
+        return nil
+    }
+    
+    /**
+    从网上获取图片信息
+    
+    :param: imgUrl	图片url
+    
+    :returns: 图片数据
+    */
+    func loadImage(imgUrl:String) -> NSData? {
+        var imgRealUrl = imgUrl
+        if imgUrl.hasPrefix("/") {
+            imgRealUrl = mainUrl + imgUrl
+        }
+        let fileName = imgRealUrl.substringFromIndex(imgRealUrl.rangeOfString("/", options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil)!.endIndex)
         if let url = NSURL(string: imgRealUrl) {
             if let data = NSData(contentsOfURL: url) {
+                
+                let fileManager = NSFileManager.defaultManager()
+
                 fileManager.createFileAtPath(imagePath.stringByAppendingPathComponent(fileName), contents: data, attributes: nil)
                 imageDic[imgRealUrl] = fileName
                 return data

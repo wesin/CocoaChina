@@ -23,6 +23,8 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
     
     var hud:MBProgressHUD?
     
+    var timer:NSTimer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = [DataContent]()
@@ -60,6 +62,9 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         //        hud.delegate = self
         hud?.labelText = "搜索中..."
         hud?.show(true)
+        
+        timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
+        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
         let url = String.localizedStringWithFormat(searchUrl, keyWord)
         getDataSource("search", type: "js", urlStr: url)
         
@@ -101,7 +106,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
                             lastKeyWords = searchBar.text
                         }
                     } else {
-                        if value as? String == nil {
+                        if value as? String == nil || self.dataSource?.count > maxCount {
                             nextUrl = ""
                         } else {
                             nextUrl = mainUrl + "//" + (value as! String)
@@ -112,6 +117,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         }
         footer?.endRefreshing()
         hud?.hide(true)
+        timer?.invalidate()
     }
     
     
@@ -146,6 +152,16 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         }
         webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!))
         
+    }
+    
+    func stopLoading() {
+        if IJReachability.isConnectedToNetwork() {
+            hud?.labelText = "网络延迟"
+        } else {
+            hud?.labelText = "网络连接失败"
+        }
+        hud?.show(true)
+        hud?.hide(true, afterDelay: 2)
     }
     
 

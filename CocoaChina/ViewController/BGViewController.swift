@@ -17,24 +17,28 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     var leadView:LeadViewController?
     var webView:WKWebView?
     
+    var tapGesture:UITapGestureRecognizer?
+    /// 是否接收点击继续功能
+    var canTap = false
+    var hud:MBProgressHUD?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         imgBG.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("launchbg", ofType: "jpg")!)
-        
-        if IJReachability.isConnectedToNetworkOfType() == IJReachabilityType.NotConnected {
-            MessageShow.ShareInstance.errorMessage = "网络连接失败!请检查设置"
-            return
-        }
+
         if !IJReachability.isConnectedToNetwork() {
-            MessageShow.ShareInstance.errorMessage = "网络连接失败!请检查设置"
+            hud = MBProgressHUD(view: self.view)
+            self.view.addSubview(hud!)
+            hud?.labelText = "网络连接失败!请检查设置"
+            hud?.show(true)
+            hud?.hide(true, afterDelay: 3)
+            addContinue()
             return
         }
         
-        getDataSource("alldata", type: "js", urlStr: mainUrl)
-        getDataSource("special", type: "js", urlStr: mainUrl + "//special")
+        loadSource()
+        
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,8 +101,34 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         self.view.addSubview(webView!)
     }
     
+    func continueView() {
+        if canTap {
+            if !IJReachability.isConnectedToNetwork() {
+                hud?.show(true)
+                hud?.hide(true, afterDelay: 3)
+                return
+            }
+            canTap = false
+            loadSource()
+        }
+    }
     
+    func loadSource() {
+        
+        getDataSource("alldata", type: "js", urlStr: mainUrl)
+        getDataSource("special", type: "js", urlStr: mainUrl + "//special")
+    }
     
-
+    /**
+    添加点击继续功能
+    */
+    func addContinue() {
+        canTap = true
+        tapGesture = UITapGestureRecognizer(target: self, action: Selector("continueView"))
+        tapGesture?.numberOfTapsRequired = 1
+        tapGesture?.numberOfTouchesRequired = 1
+        imgBG.addGestureRecognizer(tapGesture!)
+        imgBG.userInteractionEnabled = true
+    }
     
 }
