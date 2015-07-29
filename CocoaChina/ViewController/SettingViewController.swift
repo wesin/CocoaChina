@@ -27,14 +27,14 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 88
         }
-        return 44
+        return 46
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -56,6 +56,12 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
             cell.textLabel?.text = "清除缓存"
             cell.detailTextLabel?.text = String.localizedStringWithFormat("%.2fM", CommonFunc.folderSizeAtPath(PageDataCenter.instance.imagePath))
             return cell
+        case (2,0):
+            let cell = tableView.dequeueReusableCellWithIdentifier("imagerowcell", forIndexPath: indexPath) as! ImageLabelTableViewCell
+            cell.imgTitle.image = UIImage.animatedImageWithData(NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("cat", ofType: "gif")!)!)
+            cell.selectedBackgroundView = UIView(frame: cell.bounds)
+            cell.selectedBackgroundView.backgroundColor = UIColor.whiteColor()
+            return cell
         default:
             return UITableViewCell()
         }
@@ -71,6 +77,8 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
             pickImage()
         case (1,0):
             clearCache()
+        case (2,0):
+            suggest()
         default:
             return
         }
@@ -138,10 +146,18 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /**
+    清除图片缓存
+    */
     func clearCache() {
         PageDataCenter.instance.imageDic.removeAll()
         let manager = NSFileManager.defaultManager()
         manager.removeItemAtPath(PageDataCenter.instance.imagePath, error: nil)
         tableSetting.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 1)], withRowAnimation: .None)
+    }
+    
+    func suggest() {
+        let urlStr = String.localizedStringWithFormat("itms-apps://itunes.apple.com/app/id%@", "1023101059")
+        UIApplication.sharedApplication().openURL(NSURL(string: urlStr)!)
     }
 }
