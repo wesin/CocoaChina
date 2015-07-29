@@ -86,6 +86,10 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         return cell
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
+    
     //MARK:WKScriptMessageHandler
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         if message.name == MessageHandler.SearchHandler.rawValue {

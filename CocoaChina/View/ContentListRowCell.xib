@@ -15,15 +15,23 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uc2-bO-tF7">
                         <rect key="frame" x="5" y="2" width="541" height="65.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M8J-oI-gQe">
-                                <rect key="frame" x="5" y="11" width="44" height="43.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M8J-oI-gQe" customClass="CornerImageView" customModule="CocoaChina" customModuleProvider="target">
+                                <rect key="frame" x="5" y="10" width="46" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43.5" id="GPG-3T-nGG"/>
-                                    <constraint firstAttribute="width" constant="44" id="Jnw-HE-7iZ"/>
+                                    <constraint firstAttribute="height" constant="46" id="GPG-3T-nGG"/>
+                                    <constraint firstAttribute="width" constant="46" id="Jnw-HE-7iZ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderW">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2F-qB-97l">
-                                <rect key="frame" x="54" y="4" width="482" height="44"/>
+                                <rect key="frame" x="56" y="4" width="480" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Qn9-ru-Eem"/>
@@ -33,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-fj-iOC">
-                                <rect key="frame" x="54" y="40" width="80" height="21"/>
+                                <rect key="frame" x="56" y="40" width="80" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="CqX-1W-WcF"/>
                                     <constraint firstAttribute="width" constant="80" id="h1K-2B-bzc"/>
@@ -68,6 +76,11 @@
                             <constraint firstAttribute="centerY" secondItem="M8J-oI-gQe" secondAttribute="centerY" id="ka0-48-oWK"/>
                             <constraint firstItem="V2F-qB-97l" firstAttribute="leading" secondItem="M8J-oI-gQe" secondAttribute="trailing" constant="5" id="rVf-LT-Ssm"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="gDm-3D-a2x"/>

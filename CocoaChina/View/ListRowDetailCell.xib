@@ -15,15 +15,26 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-by-9QB">
                         <rect key="frame" x="5" y="2" width="558" height="65.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydG-eZ-wwq">
-                                <rect key="frame" x="5" y="10" width="44" height="44.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydG-eZ-wwq" customClass="CornerImageView" customModule="CocoaChina" customModuleProvider="target">
+                                <rect key="frame" x="5" y="9.5" width="46" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="9lv-t0-juA"/>
-                                    <constraint firstAttribute="height" constant="44" id="abW-sE-Gzi"/>
+                                    <constraint firstAttribute="width" constant="46" id="9lv-t0-juA"/>
+                                    <constraint firstAttribute="height" constant="46" id="abW-sE-Gzi"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderW">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5f-lW-bGB">
-                                <rect key="frame" x="54" y="4" width="499" height="44"/>
+                                <rect key="frame" x="56" y="4" width="497" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Mvv-Yw-zY5"/>
@@ -39,7 +50,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j69-nn-5hx">
-                                <rect key="frame" x="54" y="40.5" width="499" height="21"/>
+                                <rect key="frame" x="56" y="40.5" width="497" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="496" id="Ft2-uo-RnT"/>
@@ -70,6 +81,11 @@
                             <constraint firstItem="ydG-eZ-wwq" firstAttribute="leading" secondItem="6v0-by-9QB" secondAttribute="leading" constant="5" id="qgu-rJ-weW"/>
                             <constraint firstItem="n5f-lW-bGB" firstAttribute="trailing" secondItem="j69-nn-5hx" secondAttribute="trailing" id="uCS-Ce-EMa"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="gWH-Da-ToH"/>

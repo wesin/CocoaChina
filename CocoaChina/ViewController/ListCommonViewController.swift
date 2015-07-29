@@ -41,6 +41,10 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
         return dataSource?.count ?? 0
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 66.0
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let content = dataSource![indexPath.row]

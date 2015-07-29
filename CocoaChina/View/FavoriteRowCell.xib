@@ -17,6 +17,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seC-m5-MQw">
                                 <rect key="frame" x="5" y="4" width="531" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DEk-MU-bFf"/>
                                 </constraints>
@@ -26,6 +27,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWT-gn-eAC">
                                 <rect key="frame" x="456" y="40.5" width="80" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="FEW-vi-2iZ"/>
                                     <constraint firstAttribute="height" constant="21" id="aRI-pU-OEu"/>
@@ -44,6 +46,11 @@
                             <constraint firstAttribute="centerY" secondItem="seC-m5-MQw" secondAttribute="centerY" constant="7" id="eOr-At-buy"/>
                             <constraint firstAttribute="centerY" secondItem="MWT-gn-eAC" secondAttribute="centerY" constant="-18" id="sZL-LQ-44c"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="MiO-vx-Uo0"/>

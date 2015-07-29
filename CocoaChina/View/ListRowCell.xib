@@ -15,15 +15,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-JG-Kep">
                         <rect key="frame" x="5" y="2" width="541" height="65.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rCT-tn-vQO">
-                                <rect key="frame" x="5" y="11" width="44" height="43.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43.5" id="2d5-2B-k26"/>
-                                    <constraint firstAttribute="width" constant="44" id="rqr-P0-d4a"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am4-VR-4aM">
-                                <rect key="frame" x="54" y="4" width="482" height="44"/>
+                                <rect key="frame" x="56" y="4" width="480" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="uvG-0w-yfH"/>
                                 </constraints>
@@ -32,7 +26,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz3-fT-Ox1">
-                                <rect key="frame" x="456" y="40.5" width="80" height="21"/>
+                                <rect key="frame" x="456" y="40" width="80" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8aC-Zo-esv"/>
                                     <constraint firstAttribute="width" constant="80" id="dtE-br-rKP"/>
@@ -41,6 +36,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rCT-tn-vQO" customClass="CornerImageView" customModule="CocoaChina" customModuleProvider="target">
+                                <rect key="frame" x="5" y="9.5" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="2d5-2B-k26"/>
+                                    <constraint firstAttribute="width" constant="46" id="rqr-P0-d4a"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderW">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,6 +63,11 @@
                             <constraint firstItem="Sz3-fT-Ox1" firstAttribute="trailing" secondItem="am4-VR-4aM" secondAttribute="trailing" id="e6w-3J-5p7"/>
                             <constraint firstAttribute="centerY" secondItem="Sz3-fT-Ox1" secondAttribute="centerY" constant="-18" id="lt5-7X-mZr"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="cbO-KS-DA8"/>
