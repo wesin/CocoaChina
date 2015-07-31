@@ -4,7 +4,7 @@ function parseContentList() {
 	var list = []
 	for (var i = 0; i < contents.length; ++i) {
 		var item = contents[i]
-		var title = item.querySelector('.newsinfor a').getAttribute('title')
+		var title = item.querySelector('.newsinfor a').getAttribute('title').replace('</b>','').replace('<b>','')
 		var content = item.querySelector('.newsinfor').textContent
 		var imgUrl = item.querySelector('img').getAttribute('src')
 		var url = item.querySelector('.newsinfor a').getAttribute('href')
