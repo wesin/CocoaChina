@@ -38,7 +38,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         
         loadSource()
         
-
+        println(NSTemporaryDirectory())
     }
     
     override func viewDidAppear(animated: Bool) {

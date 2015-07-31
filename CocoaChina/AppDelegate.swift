@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         MobClick.startWithAppkey("55b8690c67e58eb791000762")
         MobClick.setAppVersion(SystemInfo.getVersion())
+        
         return true
     }
 
