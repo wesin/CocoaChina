@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 
+/// 防止delegate强引用造成循环引用问题的解决类
 class LeakAvoider : NSObject, WKScriptMessageHandler {
     weak var delegate : WKScriptMessageHandler?
     init(delegate:WKScriptMessageHandler) {
@@ -65,6 +66,11 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         hud?.show(true)
         timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
+        
+        var rightSwiper = UISwipeGestureRecognizer(target: self, action: Selector("back:"))
+        rightSwiper.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(rightSwiper)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
