@@ -977,8 +977,8 @@
 			baseConfigurationReference = 34381C562999CC2EE68BCE4C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: // / (35V9P7Q256)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: // / (35V9P7Q256)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
 				INFOPLIST_FILE = CocoaChina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -996,8 +996,8 @@
 			baseConfigurationReference = 907BD058E409DAC9B00DE701 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: // / (35V9P7Q256)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: // / (35V9P7Q256)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
 				INFOPLIST_FILE = CocoaChina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
