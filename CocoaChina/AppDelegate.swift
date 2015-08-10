@@ -18,8 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         MobClick.startWithAppkey("55b8690c67e58eb791000762")
         MobClick.setAppVersion(SystemInfo.getVersion())
-        
+        UMSocialWechatHandler.setWXAppId("wx3b23123bc4c01e40", appSecret: "591041a48f42571dcb1b71be74fc9f14", url: "https://itunes.apple.com/us/app/wei-xin/id1023101059?l=zh&ls=1&mt=8")
+        UMSocialData.setAppKey("55b8690c67e58eb791000762")
+        UMSocialConfig.hiddenNotInstallPlatforms([UMShareToWechatSession,UMShareToWechatTimeline])
         return true
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return UMSocialSnsService.handleOpenURL(url)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return UMSocialSnsService.handleOpenURL(url)
     }
 
     func applicationWillResignActive(application: UIApplication) {

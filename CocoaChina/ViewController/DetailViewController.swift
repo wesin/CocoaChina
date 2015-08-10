@@ -20,6 +20,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         navItem.title = content?.title
         
+        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: Selector("share"))
+        rightButton.tintColor = UIColor.whiteColor()
+        let rightButton2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: Selector("store:"))
+        rightButton2.tintColor = UIColor.whiteColor()
+        navItem.rightBarButtonItems = [rightButton, rightButton2]
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -59,11 +64,18 @@ class DetailViewController: UIViewController {
 //        hud.delegate = self
         hud.labelText = "收藏成功"
         hud.show(true)
-        hud.hide(true, afterDelay: 2)
+        hud.hide(true, afterDelay: 1)
     }
     
     @IBAction func back(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func share() {
+        let imageData = PageDataCenter.instance.loadImageLoacation(content!.imgurl)
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "55b8690c67e58eb791000762", shareText: content?.title, shareImage: UIImage(data: imageData!), shareToSnsNames: [UMShareToWechatSession,UMShareToWechatTimeline], delegate: nil)
+        UMSocialData.defaultData().extConfig.wechatSessionData.url = content!.url
+        UMSocialData.defaultData().extConfig.wechatTimelineData.url = content!.url
+        
+    }
 }

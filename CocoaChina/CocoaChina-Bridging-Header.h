@@ -14,5 +14,7 @@
 #import "OCCommonFunc.h"
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
 
 #endif

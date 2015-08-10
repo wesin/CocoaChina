@@ -517,12 +517,6 @@
                                                 <action selector="back:" destination="mmc-oe-90a" id="iHj-IB-eG5"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="rrX-wa-yQg">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="store:" destination="mmc-oe-90a" id="2vT-Kr-Axo"/>
-                                            </connections>
-                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
