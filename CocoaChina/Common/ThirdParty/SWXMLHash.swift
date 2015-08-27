@@ -30,9 +30,9 @@ public class SWXMLHash {
     /**
     Method to parse XML passed in as a string.
 
-    :param: xml The XML to be parsed
+    - parameter xml: The XML to be parsed
 
-    :returns: An XMLIndexer instance that is used to look up elements in the XML
+    - returns: An XMLIndexer instance that is used to look up elements in the XML
     */
     class public func parse(xml: String) -> XMLIndexer {
         return parse((xml as NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -41,12 +41,12 @@ public class SWXMLHash {
     /**
     Method to parse XML passed in as an NSData instance.
 
-    :param: xml The XML to be parsed
+    - parameter xml: The XML to be parsed
 
-    :returns: An XMLIndexer instance that is used to look up elements in the XML
+    - returns: An XMLIndexer instance that is used to look up elements in the XML
     */
     class public func parse(data: NSData) -> XMLIndexer {
-        var parser = XMLParser()
+        let parser = XMLParser()
         return parser.parse(data)
     }
 }
@@ -89,18 +89,18 @@ class XMLParser : NSObject, NSXMLParserDelegate {
         return XMLIndexer(root)
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         let currentNode = parentStack.top().addElement(elementName, withAttributes: attributeDict)
         parentStack.push(currentNode)
     }
 
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
         let current = parentStack.top()
         if current.text == nil {
             current.text = ""
         }
 
-        parentStack.top().text! += string!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        parentStack.top().text! += string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -160,10 +160,10 @@ public enum XMLIndexer : SequenceType {
     /**
     Allows for element lookup by matching attribute values.
 
-    :param: attr should the name of the attribute to match on
-    :param: _ should be the value of the attribute to match on
+    - parameter attr: should the name of the attribute to match on
+    - parameter _: should be the value of the attribute to match on
 
-    :returns: instance of XMLIndexer
+    - returns: instance of XMLIndexer
     */
     public func withAttr(attr: String, _ value: String) -> XMLIndexer {
         let attrUserInfo = [NSLocalizedDescriptionKey: "XML Attribute Error: Missing attribute [\"\(attr)\"]"]
@@ -190,9 +190,9 @@ public enum XMLIndexer : SequenceType {
     /**
     Initializes the XMLIndexer
 
-    :param: _ should be an instance of XMLElement, but supports other values for error handling
+    - parameter _: should be an instance of XMLElement, but supports other values for error handling
 
-    :returns: instance of XMLIndexer
+    - returns: instance of XMLIndexer
     */
     public init(_ rawObject: AnyObject) {
         switch rawObject {
@@ -206,9 +206,9 @@ public enum XMLIndexer : SequenceType {
     /**
     Find an XML element at the current level by element name
 
-    :param: key The element name to index by
+    - parameter key: The element name to index by
 
-    :returns: instance of XMLIndexer to match the element (or elements) found by key
+    - returns: instance of XMLIndexer to match the element (or elements) found by key
     */
     public subscript(key: String) -> XMLIndexer {
         get {
@@ -234,9 +234,9 @@ public enum XMLIndexer : SequenceType {
     /**
     Find an XML element by index within a list of XML Elements at the current level
 
-    :param: index The 0-based index to index by
+    - parameter index: The 0-based index to index by
 
-    :returns: instance of XMLIndexer to match the element (or elements) found by key
+    - returns: instance of XMLIndexer to match the element (or elements) found by key
     */
     public subscript(index: Int) -> XMLIndexer {
         get {
@@ -282,15 +282,15 @@ extension XMLIndexer: BooleanType {
     }
 }
 
-extension XMLIndexer: Printable {
+extension XMLIndexer: CustomStringConvertible {
     public var description: String {
         get {
             switch self {
             case .List(let list):
-                return "\n".join(list.map { $0.description })
+                return list.map { $0.description }.joinWithSeparator("\n")
             case .Element(let elem):
                 if elem.name == rootElementName {
-                    return "\n".join(elem.children.map { $0.description })
+                    return elem.children.map { $0.description }.joinWithSeparator("\n")
                 }
 
                 return elem.description
@@ -317,9 +317,9 @@ public class XMLElement {
     /**
     Initialize an XMLElement instance
 
-    :param: name The name of the element to be initialized
+    - parameter name: The name of the element to be initialized
 
-    :returns: a new instance of XMLElement
+    - returns: a new instance of XMLElement
     */
     init(name: String, index: Int = 0) {
         self.name = name
@@ -329,10 +329,10 @@ public class XMLElement {
     /**
     Adds a new XMLElement underneath this instance of XMLElement
 
-    :param: name The name of the new element to be added
-    :param: withAttributes The attributes dictionary for the element being added
+    - parameter name: The name of the new element to be added
+    - parameter withAttributes: The attributes dictionary for the element being added
 
-    :returns: The XMLElement that has now been added
+    - returns: The XMLElement that has now been added
     */
     func addElement(name: String, withAttributes attributes: NSDictionary) -> XMLElement {
         let element = XMLElement(name: name, index: count)
@@ -350,7 +350,7 @@ public class XMLElement {
     }
 }
 
-extension XMLElement: Printable {
+extension XMLElement: CustomStringConvertible {
     public var description:String {
         get {
             var attributesStringList = [String]()
@@ -360,7 +360,7 @@ extension XMLElement: Printable {
                 }
             }
             
-            var attributesString = " ".join(attributesStringList)
+            var attributesString = attributesStringList.joinWithSeparator(" ")
             if (!attributesString.isEmpty) {
                 attributesString = " " + attributesString
             }
@@ -372,7 +372,7 @@ extension XMLElement: Printable {
                     xmlReturn.append(child.description)
                 }
                 xmlReturn.append("</\(name)>")
-                return "\n".join(xmlReturn)
+                return xmlReturn.joinWithSeparator("\n")
             }
             
             if text != nil {

@@ -10,14 +10,14 @@ import UIKit
 
 class Animator: NSObject,UIViewControllerAnimatedTransitioning {
    
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.3
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         let fromView = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
         let toView = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-        transitionContext.containerView().addSubview(toView!.view)
+        transitionContext.containerView()!.addSubview(toView!.view)
         toView?.view.alpha = 0
         UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: {
             fromView?.view.transform = CGAffineTransformMakeScale(0.1, 0.1)

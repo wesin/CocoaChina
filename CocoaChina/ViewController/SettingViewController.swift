@@ -17,7 +17,7 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName)
+        headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName.path!)
         tableSetting.tableFooterView = UIView(frame: CGRectZero)
     }
     
@@ -52,7 +52,7 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
             cell.imgHead.image = headImage
             return cell
         case (1,0):
-            let cell = tableView.dequeueReusableCellWithIdentifier("leftrightcell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("leftrightcell", forIndexPath: indexPath) 
             cell.textLabel?.text = "清除缓存"
             cell.detailTextLabel?.text = String.localizedStringWithFormat("%.2fM", CommonFunc.folderSizeAtPath(PageDataCenter.instance.imagePath))
             return cell
@@ -60,7 +60,7 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
             let cell = tableView.dequeueReusableCellWithIdentifier("imagerowcell", forIndexPath: indexPath) as! ImageLabelTableViewCell
             cell.imgTitle.image = UIImage.animatedImageWithData(NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("cat", ofType: "gif")!)!)
             cell.selectedBackgroundView = UIView(frame: cell.bounds)
-            cell.selectedBackgroundView.backgroundColor = UIColor.whiteColor()
+            cell.selectedBackgroundView!.backgroundColor = UIColor.whiteColor()
             return cell
         default:
             return UITableViewCell()
@@ -97,7 +97,7 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
             })
             let cancelBtn = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: {
                 action -> Void in
-                self.tableSetting.deselectRowAtIndexPath(self.tableSetting.indexPathForSelectedRow()!, animated: true)
+                self.tableSetting.deselectRowAtIndexPath(self.tableSetting.indexPathForSelectedRow!, animated: true)
             })
             myAlertView?.addAction(cancelBtn)
             myAlertView?.addAction(cameraBtn)
@@ -127,18 +127,21 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
     /**
     保存图片
     
-    :param: img 图片
+    - parameter img: 图片
     */
     private func saveImage(img:UIImage) {
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(queue) {
             let fileManager = NSFileManager.defaultManager()
             let filePath = PageDataCenter.instance.imageHeadPath
-            if !fileManager.fileExistsAtPath(filePath) {
-                fileManager.createDirectoryAtPath(PageDataCenter.instance.imageHeadPath, withIntermediateDirectories: true, attributes: nil, error: nil)
+            if !fileManager.fileExistsAtPath(filePath.path!) {
+                do {
+                    try fileManager.createDirectoryAtPath(PageDataCenter.instance.imageHeadPath.path!, withIntermediateDirectories: true, attributes: nil)
+                } catch _ {
+                }
             }
-            var data = UIImagePNGRepresentation(img)
-            fileManager.createFileAtPath(PageDataCenter.instance.imageHeadName, contents: data, attributes: nil)
+            let data = UIImagePNGRepresentation(img)
+            fileManager.createFileAtPath(PageDataCenter.instance.imageHeadName.path!, contents: data, attributes: nil)
         }
     }
     
@@ -152,7 +155,10 @@ class SettingViewController:UIViewController,UITableViewDataSource, UITableViewD
     func clearCache() {
         PageDataCenter.instance.imageDic.removeAll()
         let manager = NSFileManager.defaultManager()
-        manager.removeItemAtPath(PageDataCenter.instance.imagePath, error: nil)
+        do {
+            try manager.removeItemAtPath(PageDataCenter.instance.imagePath.path!)
+        } catch _ {
+        }
         tableSetting.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 1)], withRowAnimation: .None)
     }
     

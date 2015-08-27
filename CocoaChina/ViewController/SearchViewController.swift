@@ -47,7 +47,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
     }
     
     deinit{
-        println("search deinit")
+        print("search deinit")
     }
     
 
@@ -75,7 +75,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         
         timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
-        let url = String.localizedStringWithFormat(searchUrl, keyWord)
+        let url = String.localizedStringWithFormat(searchUrl, keyWord!)
         getDataSource("search", type: "js", urlStr: url)
         
         searchBar.resignFirstResponder()
@@ -87,7 +87,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var content = dataSource![indexPath.row]
+        let content = dataSource![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("searchrowcell", forIndexPath: indexPath) as! SearchRowTableViewCell
         cell.labelTitle.text = content.title
         cell.labelContent.text = content.content
@@ -117,7 +117,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
                             if dataSource!.count > 0 && lastKeyWords != searchBar.text {
                                 tableResult.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
                             }
-                            lastKeyWords = searchBar.text
+                            lastKeyWords = searchBar.text!
                         }
                     } else {
                         if value as? String == nil || self.dataSource?.count > maxCount {
@@ -138,42 +138,42 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
     /**
     获取数据源
     
-    :param: name	文件名
-    :param: type	文件后缀名
+    - parameter name:	文件名
+    - parameter type:	文件后缀名
     */
     private func getDataSource(name:String, type:String, urlStr:String) {
         if webView == nil {
             let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
             config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.SearchHandler.rawValue)
             webView = WKWebView(frame: CGRectZero, configuration: config)
-            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet())!)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
             self.view.addSubview(webView!)
         } else {
-            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!))
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet())!)!))
         }
     }
     
     /**
     获取数据源
     
-    :param: name	文件名
-    :param: type	文件后缀名
+    - parameter name:	文件名
+    - parameter type:	文件后缀名
     */
     func getNextData() {
         if nextUrl == "" {
             footer?.noticeNoMoreData()
             return
         }
-        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!))
+        webView?.loadRequest(NSURLRequest(URL: NSURL(string: nextUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet())!)!))
         
     }
     
     func stopLoading() {
-        if IJReachability.isConnectedToNetwork() {
-            hud?.labelText = "网络延迟"
-        } else {
+//        if IJReachability.isConnectedToNetwork() {
+//            hud?.labelText = "网络延迟"
+//        } else {
             hud?.labelText = "网络连接失败"
-        }
+//        }
         hud?.show(true)
         hud?.hide(true, afterDelay: 2)
     }

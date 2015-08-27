@@ -10,8 +10,8 @@ import Foundation
 
 extension Array {
     
-    func find(fn: (T) -> Bool) -> Int {
-        for (index,x) in enumerate(self) {
+    func find(fn: (Element) -> Bool) -> Int {
+        for (index,x) in self.enumerate() {
             if fn(x) {
                 return index
             }

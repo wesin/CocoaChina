@@ -55,7 +55,7 @@ class WesinDatePicker: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        println(bounds)
+        print(bounds)
         if datePicker == nil  {
             self.backgroundColor = UIColor.whiteColor()
             endDate = beginDate.dateByAddingYears(100)
@@ -115,7 +115,7 @@ class WesinDatePicker: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:
             return "\(beginDate.year() + row)年"

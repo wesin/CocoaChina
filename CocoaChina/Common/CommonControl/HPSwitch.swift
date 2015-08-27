@@ -76,8 +76,8 @@ class HPSwitch: UIView {
     func drawControls() {
         var index = 0
         for item in arrayTitle! {
-            var labelX = CGFloat(index) * (imgWidth + labelWidth)
-            var label = UILabel(frame: CGRect(x: labelX, y: 0, width: labelWidth, height: bounds.height))
+            let labelX = CGFloat(index) * (imgWidth + labelWidth)
+            let label = UILabel(frame: CGRect(x: labelX, y: 0, width: labelWidth, height: bounds.height))
             label.textColor = index == lastSelectIndex ? selectColor : fontColor
             label.textAlignment = .Center
             label.font = UIFont(name: "System", size: 5)
@@ -85,7 +85,7 @@ class HPSwitch: UIView {
             arrayLabel.append(label)
             label.text = item
             if index != arrayTitle!.count - 1 {
-                var separateView = UILabel(frame: CGRect(x: labelX + labelWidth , y: 2, width: imgWidth, height: bounds.height - 4))
+                let separateView = UILabel(frame: CGRect(x: labelX + labelWidth , y: 2, width: imgWidth, height: bounds.height - 4))
                 self.addSubview(separateView)
                 separateView.backgroundColor = separateBGColor
                 separateView.text = separateChar
@@ -101,7 +101,7 @@ class HPSwitch: UIView {
     }
     
     func click(gesture:UIGestureRecognizer) {
-        var position = gesture.locationInView(self)
+        let position = gesture.locationInView(self)
         let index = Int(position.x / (bounds.width / CGFloat(arrayTitle!.count)))
         if lastSelectIndex == index {
             return

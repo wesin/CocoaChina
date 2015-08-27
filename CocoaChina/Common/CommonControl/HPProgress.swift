@@ -43,18 +43,18 @@ class HPProgress: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     func show() {
-        println("show")
+        print("show")
         imageView?.startAnimating()
         controller?.view.bringSubviewToFront(self)
     }
     
     func hide() {
-        println("hide")
+        print("hide")
         imageView?.stopAnimating()
         controller?.view.sendSubviewToBack(self)
     }

@@ -103,7 +103,7 @@ class ListCommonViewController:UIViewController, UITableViewDataSource, UITableV
     /**
     异步加载图片
     
-    :param: index	cell indexpath
+    - parameter index:	cell indexpath
     */
     func getImage(cell:UITableViewCell, index:NSIndexPath) {
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)

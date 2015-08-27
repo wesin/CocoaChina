@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
     }
     
     deinit {
-        println("Detail deinit")
+        print("Detail deinit")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -53,13 +53,12 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func store(sender: AnyObject) {
-        let favoriteCenter = FavoriteCenter.instance
-        var item = Favorite.create() as! Favorite
+        let item = Favorite.create() as! Favorite
         item.date = NSDate()
         item.title = content!.title
         item.url = content!.url
         item.save()
-        var hud = MBProgressHUD(view: self.view)
+        let hud = MBProgressHUD(view: self.view)
         self.view.addSubview(hud)
 //        hud.delegate = self
         hud.labelText = "收藏成功"

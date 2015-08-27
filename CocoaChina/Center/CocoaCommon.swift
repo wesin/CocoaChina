@@ -15,7 +15,7 @@ class CocoaCommon {
         var script = jsDic[name]
         if script == nil {
             let resource = NSBundle.mainBundle().pathForResource(name, ofType: extend)
-            let scriptJS = String(contentsOfFile: resource!, encoding: NSUTF8StringEncoding, error: nil)
+            let scriptJS = try? String(contentsOfFile: resource!, encoding: NSUTF8StringEncoding)
             script = WKUserScript(source: scriptJS!, injectionTime: injection, forMainFrameOnly: true)
             jsDic[name] = script
         }
@@ -27,7 +27,7 @@ class CocoaCommon {
         var script = jsDic[name]
         if script == nil {
             let resource = NSBundle.mainBundle().pathForResource(name, ofType: extend)
-            let scriptJS = String(contentsOfFile: resource!, encoding: NSUTF8StringEncoding, error: nil)
+            let scriptJS = try? String(contentsOfFile: resource!, encoding: NSUTF8StringEncoding)
             script = WKUserScript(source: scriptJS!, injectionTime: injection, forMainFrameOnly: true)
             jsDic[name] = script
         }

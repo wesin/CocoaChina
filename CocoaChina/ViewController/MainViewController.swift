@@ -44,7 +44,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         dataSource = PageDataCenter.instance.dataAll[ListType.Main]
         
         header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("getDataSource"))
-        header?.lastUpdatedTimeLabel.hidden = true
+        header?.lastUpdatedTimeLabel!.hidden = true
         header?.setTitle("下拉刷新", forState: MJRefreshStateIdle)
         header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
         header?.setTitle("松开结束", forState: MJRefreshStatePulling)
@@ -66,7 +66,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         if converView == nil {
             converView = UIView(frame: self.view.bounds)
             converView?.backgroundColor = UIColor.blackColor()
-            var tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideLeading"))
+            let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideLeading"))
             tapGesture.numberOfTapsRequired = 1
             tapGesture.numberOfTouchesRequired = 1
             converView?.addGestureRecognizer(tapGesture)
@@ -178,8 +178,8 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
     /**
     获取数据源
     
-    :param: name	文件名
-    :param: type	文件后缀名
+    - parameter name:	文件名
+    - parameter type:	文件后缀名
     */
     func getDataSource() {
 //        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.MainHandler.rawValue)

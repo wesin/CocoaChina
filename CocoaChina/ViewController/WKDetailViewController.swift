@@ -56,7 +56,7 @@ class WKDetailViewController:UIViewController, WKNavigationDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "estimatedProgress" {
             progress.alpha = 1
             progress.setProgress(Float(wkView!.estimatedProgress), animated: true)

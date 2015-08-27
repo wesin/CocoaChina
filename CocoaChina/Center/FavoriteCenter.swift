@@ -13,9 +13,9 @@ class FavoriteCenter: NSObject {
     
     private override init() {
         let modelPath: NSString = NSBundle.mainBundle().pathForResource("CocoaChina", ofType: "momd")!
-        let model: NSManagedObjectModel = NSManagedObjectModel(contentsOfURL: NSURL(fileURLWithPath: modelPath as! String)!)!
+        let model: NSManagedObjectModel = NSManagedObjectModel(contentsOfURL: NSURL(fileURLWithPath: modelPath as String))!
         
-        var stack:SugarRecordStackProtocol = DefaultCDStack(databaseName: "cocoa.sqlite", model: model, automigrating: true)
+        let stack:SugarRecordStackProtocol = DefaultCDStack(databaseName: "cocoa.sqlite", model: model, automigrating: true)
         (stack as! DefaultCDStack).autoSaving = true
         SugarRecord.addStack(stack)
     }
@@ -29,7 +29,7 @@ class FavoriteCenter: NSObject {
     /**
     初始化
     
-    :returns: 
+    - returns: 
     */
     func initCenter() {
         

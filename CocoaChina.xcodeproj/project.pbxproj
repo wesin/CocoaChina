@@ -54,7 +54,6 @@
 		0A43E5B71B4F9776001735FF /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E57F1B4F9776001735FF /* NSData+CommonCrypto.m */; };
 		0A43E5B81B4F9776001735FF /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5811B4F9776001735FF /* NSString+Base64.m */; };
 		0A43E5B91B4F9776001735FF /* NSString+Encrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5831B4F9776001735FF /* NSString+Encrypto.m */; };
-		0A43E5BA1B4F9776001735FF /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5841B4F9776001735FF /* IJReachability.swift */; };
 		0A43E5BB1B4F9776001735FF /* NSDate+WSDateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5861B4F9776001735FF /* NSDate+WSDateTools.m */; };
 		0A43E5BC1B4F9776001735FF /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5871B4F9776001735FF /* SwiftyJSON.swift */; };
 		0A43E5BD1B4F9776001735FF /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43E5881B4F9776001735FF /* SWXMLHash.swift */; };
@@ -76,6 +75,8 @@
 		0A49DF651B6878E6005BD535 /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A49DF641B6878E6005BD535 /* cat.gif */; };
 		0A49DF671B687A13005BD535 /* ImageLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A49DF661B687A13005BD535 /* ImageLabelTableViewCell.swift */; };
 		0A49DF691B688670005BD535 /* CornerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A49DF681B688670005BD535 /* CornerImageView.swift */; };
+		0A62DB041B8EAD0700F73555 /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62DB031B8EAD0700F73555 /* JSONExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		0A62DB061B8EAD2D00F73555 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62DB051B8EAD2D00F73555 /* NSDateExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		0A8C1F411B61D0D700C26A1C /* HeadRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C1F401B61D0D700C26A1C /* HeadRowTableViewCell.swift */; };
 		0A8C1F441B61D5F000C26A1C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C1F431B61D5F000C26A1C /* SettingViewController.swift */; };
 		0AB7FACF1B5511B200B87898 /* special.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AB7FACE1B5511B200B87898 /* special.js */; };
@@ -196,7 +197,6 @@
 		0A43E5811B4F9776001735FF /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		0A43E5821B4F9776001735FF /* NSString+Encrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encrypto.h"; sourceTree = "<group>"; };
 		0A43E5831B4F9776001735FF /* NSString+Encrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encrypto.m"; sourceTree = "<group>"; };
-		0A43E5841B4F9776001735FF /* IJReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJReachability.swift; sourceTree = "<group>"; };
 		0A43E5851B4F9776001735FF /* NSDate+WSDateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WSDateTools.h"; sourceTree = "<group>"; };
 		0A43E5861B4F9776001735FF /* NSDate+WSDateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WSDateTools.m"; sourceTree = "<group>"; };
 		0A43E5871B4F9776001735FF /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -221,6 +221,8 @@
 		0A49DF641B6878E6005BD535 /* cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cat.gif; sourceTree = "<group>"; };
 		0A49DF661B687A13005BD535 /* ImageLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLabelTableViewCell.swift; sourceTree = "<group>"; };
 		0A49DF681B688670005BD535 /* CornerImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerImageView.swift; sourceTree = "<group>"; };
+		0A62DB031B8EAD0700F73555 /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
+		0A62DB051B8EAD2D00F73555 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		0A8C1F401B61D0D700C26A1C /* HeadRowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadRowTableViewCell.swift; sourceTree = "<group>"; };
 		0A8C1F431B61D5F000C26A1C /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0AB7FACE1B5511B200B87898 /* special.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = special.js; sourceTree = "<group>"; };
@@ -415,6 +417,8 @@
 				0A43E55B1B4F9776001735FF /* ArrayExtension.swift */,
 				0A43E55C1B4F9776001735FF /* CalculateFunc.swift */,
 				0A43E55D1B4F9776001735FF /* CommonFunc.swift */,
+				0A62DB031B8EAD0700F73555 /* JSONExtension.swift */,
+				0A62DB051B8EAD2D00F73555 /* NSDateExtension.swift */,
 				0A43E55E1B4F9776001735FF /* MessageShow.swift */,
 				0A43E55F1B4F9776001735FF /* OCCommonFunc.h */,
 				0A43E5601B4F9776001735FF /* OCCommonFunc.m */,
@@ -430,7 +434,6 @@
 				0ABD66021B5A33C400AE5C0B /* library */,
 				0A43E5641B4F9776001735FF /* Cartography */,
 				0A43E5791B4F9776001735FF /* Encrpt */,
-				0A43E5841B4F9776001735FF /* IJReachability.swift */,
 				0A43E5851B4F9776001735FF /* NSDate+WSDateTools.h */,
 				0A43E5861B4F9776001735FF /* NSDate+WSDateTools.m */,
 				0A43E5871B4F9776001735FF /* SwiftyJSON.swift */,
@@ -774,7 +777,9 @@
 		0A43E5231B4F774D001735FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Hupun;
 				TargetAttributes = {
 					0A43E52A1B4F774D001735FF = {
@@ -941,13 +946,13 @@
 				0A49DF671B687A13005BD535 /* ImageLabelTableViewCell.swift in Sources */,
 				0ABD65C81B574DF500AE5C0B /* SearchViewController.swift in Sources */,
 				0A43E5A21B4F9776001735FF /* Coefficients.swift in Sources */,
+				0A62DB061B8EAD2D00F73555 /* NSDateExtension.swift in Sources */,
 				0A43E5BB1B4F9776001735FF /* NSDate+WSDateTools.m in Sources */,
 				0A43E5D41B4FA3AC001735FF /* ListRowTableViewCell.swift in Sources */,
 				0A43E5C91B4F9814001735FF /* ListCommonViewController.swift in Sources */,
 				0ABD66341B5A364C00AE5C0B /* Favorite.swift in Sources */,
 				0ABD66271B5A33C400AE5C0B /* SugarRecordCDContext.swift in Sources */,
 				0A43E5C11B4F9776001735FF /* ToRightTransition.swift in Sources */,
-				0A43E5BA1B4F9776001735FF /* IJReachability.swift in Sources */,
 				0ABD66251B5A33C400AE5C0B /* iCloudCDStack.swift in Sources */,
 				0ABD65CC1B57531C00AE5C0B /* SearchRowTableViewCell.swift in Sources */,
 				0A43E5951B4F9776001735FF /* HPSwitch.swift in Sources */,
@@ -962,6 +967,7 @@
 				0ABD663A1B5A456300AE5C0B /* FavoriteRowTableViewCell.swift in Sources */,
 				0ABD66261B5A33C400AE5C0B /* NSManagedObject+SugarRecord.swift in Sources */,
 				0A43E5A01B4F9776001735FF /* SystemInfo.swift in Sources */,
+				0A62DB041B8EAD0700F73555 /* JSONExtension.swift in Sources */,
 				0A43E5991B4F9776001735FF /* Animator.swift in Sources */,
 				0A43E5AD1B4F9776001735FF /* Layout.swift in Sources */,
 				0A43E5A71B4F9776001735FF /* Dimension.swift in Sources */,
@@ -1044,6 +1050,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1114,6 +1121,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CocoaChina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1124,6 +1132,7 @@
 					"$(PROJECT_DIR)/CocoaChina/Common/ThirdParty/UMeng/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/CocoaChina/Common/ThirdParty/UMeng/Wechat",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.hupun.ios.CocoaChina;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71ada3e8-0bf7-4433-82f3-63ae7402115f";
 			};
@@ -1136,6 +1145,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou HUPUN Network Technology CO.,LTD. (DJ4AGN3SJB)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CocoaChina/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1146,6 +1156,7 @@
 					"$(PROJECT_DIR)/CocoaChina/Common/ThirdParty/UMeng/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/CocoaChina/Common/ThirdParty/UMeng/Wechat",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.hupun.ios.CocoaChina;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71ada3e8-0bf7-4433-82f3-63ae7402115f";
 			};
@@ -1165,6 +1176,7 @@
 				);
 				INFOPLIST_FILE = CocoaChinaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.hupun.ios.HupunErp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CocoaChina.app/CocoaChina";
 			};
@@ -1181,6 +1193,7 @@
 				);
 				INFOPLIST_FILE = CocoaChinaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.hupun.ios.HupunErp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CocoaChina.app/CocoaChina";
 			};

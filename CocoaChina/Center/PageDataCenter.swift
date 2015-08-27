@@ -14,7 +14,7 @@ class PageDataCenter:NSObject {
     
     private override init() {
         FavoriteCenter.instance
-        imageHeadName = imageHeadPath.stringByAppendingPathComponent("head.png")
+        imageHeadName = imageHeadPath.URLByAppendingPathComponent("head.png")
     }
     
     private static let a = PageDataCenter()
@@ -28,19 +28,17 @@ class PageDataCenter:NSObject {
     //缓存的图片信息
     var imageDic = [String:String]()
     
-    var imagePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0].stringByAppendingPathComponent("Image")
-    //        let documentPath: AnyObject = path[0] NSHomeDirectory().stringByAppendingPathComponent("Image")
+    var imagePath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]).URLByAppendingPathComponent("Image")
     
-    
-    var imageHeadPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0].stringByAppendingPathComponent("Head")
-    var imageHeadName = ""
+    var imageHeadPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]).URLByAppendingPathComponent("Head")
+    var imageHeadName:NSURL!
     
     func loadImageAsync() {
 
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(queue) {
-            for (key,value) in self.dataAll {
-                value.map() {
+            for (_,value) in self.dataAll {
+                _ = value.map() {
                    (t) -> Void in
                     self.loadImage(t.imgurl)
                 }
@@ -51,40 +49,46 @@ class PageDataCenter:NSObject {
     /**
     根据url地址从本地获取图片
     
-    :param: imgUrl	图片地址
+    - parameter imgUrl:	图片地址
     
-    :returns: 返回图片数据
+    - returns: 返回图片数据
     */
     func loadImageLoacation(imgUrl:String) -> NSData? {
         var imgRealUrl = imgUrl
         let fileManager = NSFileManager.defaultManager()
-        if !fileManager.fileExistsAtPath(imagePath) {
-            fileManager.createDirectoryAtPath(imagePath, withIntermediateDirectories: true, attributes: nil, error: nil)
+        if !fileManager.fileExistsAtPath(imagePath.path!) {
+            do {
+                try fileManager.createDirectoryAtPath(imagePath.path!, withIntermediateDirectories: true, attributes: nil)
+            } catch _ {
+            }
         }
+        
         if imgUrl.hasPrefix("/") {
             imgRealUrl = mainUrl + imgUrl
         }
         if let fileName = imageDic[imgRealUrl] {
             //            return fileName
-            return NSData(contentsOfFile:  imagePath.stringByAppendingPathComponent(fileName))
+            return NSData(contentsOfURL: imagePath.URLByAppendingPathComponent(fileName))
         }
         //检查是不是已经存在该文件
         let fileName = imgRealUrl.substringFromIndex(imgRealUrl.rangeOfString("/", options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil)!.endIndex)
-        let filePath = imagePath.stringByAppendingPathComponent(fileName)
-        if fileManager.fileExistsAtPath(filePath) {
+        let filePath = imagePath.URLByAppendingPathComponent(fileName)
+        if fileManager.fileExistsAtPath(filePath.path!) {
             imageDic[fileName] = fileName
-            return NSData(contentsOfFile: filePath)
+            return NSData(contentsOfURL: filePath)
         }
         
         return nil
     }
     
+    
+    
     /**
     从网上获取图片信息
     
-    :param: imgUrl	图片url
+    - parameter imgUrl:	图片url
     
-    :returns: 图片数据
+    - returns: 图片数据
     */
     func loadImage(imgUrl:String) -> NSData? {
         var imgRealUrl = imgUrl
@@ -97,7 +101,7 @@ class PageDataCenter:NSObject {
                 
                 let fileManager = NSFileManager.defaultManager()
 
-                fileManager.createFileAtPath(imagePath.stringByAppendingPathComponent(fileName), contents: data, attributes: nil)
+                fileManager.createFileAtPath(imagePath.URLByAppendingPathComponent(fileName).path!, contents: data, attributes: nil)
                 imageDic[imgRealUrl] = fileName
                 return data
             }

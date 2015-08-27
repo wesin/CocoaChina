@@ -51,7 +51,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         dataSource = [DataContent]()
         
         header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("getDataSource"))
-        header?.lastUpdatedTimeLabel.hidden = true
+        header?.lastUpdatedTimeLabel!.hidden = true
         header?.setTitle("下拉刷新", forState: MJRefreshStateIdle)
         header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
         header?.setTitle("松开结束", forState: MJRefreshStatePulling)
@@ -67,7 +67,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
         
-        var rightSwiper = UISwipeGestureRecognizer(target: self, action: Selector("back:"))
+        let rightSwiper = UISwipeGestureRecognizer(target: self, action: Selector("back:"))
         rightSwiper.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(rightSwiper)
         
@@ -86,7 +86,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     
     
     deinit {
-        println("LeadList deinit")
+        print("LeadList deinit")
         webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.ContentHandler.rawValue)
     }
     
@@ -153,7 +153,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     /**
     异步加载图片
     
-    :param: index	cell indexpath
+    - parameter index:	cell indexpath
     */
     func getImage(index:NSIndexPath) {
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -172,8 +172,8 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     /**
     获取数据源
     
-    :param: name	文件名
-    :param: type	文件后缀名
+    - parameter name:	文件名
+    - parameter type:	文件后缀名
     */
     func getDataSource() {
         if webView == nil {
@@ -196,11 +196,11 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     }
     
     func stopLoading() {
-        if IJReachability.isConnectedToNetwork() {
-            hud?.labelText = "网络延迟"
-        } else {
+//        if IJReachability.isConnectedToNetwork() {
+//            hud?.labelText = "网络延迟"
+//        } else {
             hud?.labelText = "网络连接失败"
-        }
+//        }
         hud?.show(true)
         hud?.hide(true, afterDelay: 2)
     }

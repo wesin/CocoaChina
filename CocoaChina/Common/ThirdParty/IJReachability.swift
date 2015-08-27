@@ -57,7 +57,7 @@ public class IJReachability {
         }
         
         let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
-        let isWWAN = (flags & UInt32(kSCNetworkReachabilityFlagsIsWWAN)) != 0
+        let isWWAN = (flags & UInt32(SCNetworkReachabilityFlags.IsWWAN)) != 0
         //let isWifI = (flags & UInt32(kSCNetworkReachabilityFlagsReachable)) != 0
         
         if(isReachable && isWWAN){

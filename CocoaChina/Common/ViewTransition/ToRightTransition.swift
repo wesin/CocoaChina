@@ -10,7 +10,7 @@ import UIKit
 
 class ToRightTransition:NSObject,UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.2
     }
     
@@ -22,8 +22,8 @@ class ToRightTransition:NSObject,UIViewControllerAnimatedTransitioning {
         let finalFrame = CGRectOffset(initFrame, screenBounds.width, 0)
         
         let containerView = transitionContext.containerView()
-        containerView.addSubview(toVC!.view)
-        containerView.sendSubviewToBack(toVC!.view)
+        containerView!.addSubview(toVC!.view)
+        containerView!.sendSubviewToBack(toVC!.view)
         
         let duration = self.transitionDuration(transitionContext)
         UIView.animateWithDuration(duration, animations: {

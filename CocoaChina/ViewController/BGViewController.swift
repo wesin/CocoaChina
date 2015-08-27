@@ -26,19 +26,10 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         
         imgBG.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("launchbg", ofType: "jpg")!)
 
-        if !IJReachability.isConnectedToNetwork() {
-            hud = MBProgressHUD(view: self.view)
-            self.view.addSubview(hud!)
-            hud?.labelText = "网络连接失败!请检查设置"
-            hud?.show(true)
-            hud?.hide(true, afterDelay: 3)
-            addContinue()
-            return
-        }
-        
+
         loadSource()
         
-        println(NSTemporaryDirectory())
+        print(NSTemporaryDirectory())
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -47,7 +38,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     }
     
     deinit{
-        println("bgview deinit")
+        print("bgview deinit")
     }
     
     //MARK:WKScriptMessageHandler
@@ -55,10 +46,11 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         if message.name == MessageHandler.MainHandler.rawValue {
             if let contentDic = message.body as? [String:[[String:AnyObject]]] {
                 for (key,value) in contentDic {
-                    var tempData = [DataContent]()
-                    value.map(){
-                        tempData.append(DataContent(contentObj: $0))
-                    }
+//                    var tempData = [DataContent]()
+                    let tempData = value.map({DataContent(contentObj: $0)})
+//                    value.map(){
+//                        tempData.append(DataContent(contentObj: $0))
+//                    }
                     switch key {
                     case "main":
                         PageDataCenter.instance.dataAll[ListType.Main] = tempData
@@ -88,8 +80,8 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     /**
     获取数据源
     
-    :param: name	文件名
-    :param: type	文件后缀名
+    - parameter name:	文件名
+    - parameter type:	文件后缀名
     */
     func getDataSource(name:String, type:String, urlStr:String) {
         let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
@@ -103,11 +95,11 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     
     func continueView() {
         if canTap {
-            if !IJReachability.isConnectedToNetwork() {
-                hud?.show(true)
-                hud?.hide(true, afterDelay: 3)
-                return
-            }
+//            if !IJReachability.isConnectedToNetwork() {
+//                hud?.show(true)
+//                hud?.hide(true, afterDelay: 3)
+//                return
+//            }
             canTap = false
             loadSource()
         }

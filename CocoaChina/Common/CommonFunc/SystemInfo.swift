@@ -26,13 +26,13 @@ class SystemInfo {
     
     static func getPhoneMode() -> String {
         let model = OCCommonFunc.getMachineVersion()
-        println(model)
+        print(model)
         return model
 //        return UIDevice.currentDevice().model
     }
     
     static func getUniqueID() -> String {
-        return UIDevice.currentDevice().identifierForVendor.UUIDString
+        return UIDevice.currentDevice().identifierForVendor!.UUIDString
     }
     
     

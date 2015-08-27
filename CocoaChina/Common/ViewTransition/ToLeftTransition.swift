@@ -10,7 +10,7 @@ import UIKit
 
 class ToLeftTransition:NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.2
     }
     
@@ -22,7 +22,7 @@ class ToLeftTransition:NSObject, UIViewControllerAnimatedTransitioning {
         toView?.view.frame = CGRectOffset(finalFrame, screenBounds.size.width, 0)
         
         let containerView = transitionContext.containerView()
-        containerView.addSubview(toView!.view)
+        containerView!.addSubview(toView!.view)
         
         let duration = self.transitionDuration(transitionContext)
         UIView.animateWithDuration(duration, delay:0.0, options: UIViewAnimationOptions.CurveLinear, animations: {

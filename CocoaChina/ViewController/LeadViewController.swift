@@ -26,7 +26,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
         super.viewDidLoad()
         leadSource = [("ios","iOS开发"),("swift","Swift"),("appstore","App Store研究"),("game","游戏开发"),("review","应用评测"),("apple","苹果相关"),("design","产品设计"),("market","营销推广"),("cocos","Cocos引擎"),("industry","业界动态"),("webapp","WebApp"),("programmer","程序人生")]
         tableLead.tableFooterView = UIView(frame: CGRectZero)
-        headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName)
+        headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName.path!)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("changehead:"), name: "changehead", object: nil)
         selectColor = UIColor(red: 65/255, green: 174/255, blue: 247/255, alpha: 1)
     }
@@ -37,7 +37,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     override func viewDidDisappear(animated: Bool) {
-        if let index = tableLead.indexPathForSelectedRow() {
+        if let index = tableLead.indexPathForSelectedRow {
             tableLead.deselectRowAtIndexPath(index, animated: false)
         }
         super.viewDidDisappear(animated)
@@ -68,13 +68,13 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
             let cell = tableView.dequeueReusableCellWithIdentifier("headrowcell", forIndexPath: indexPath) as! HeadRowTableViewCell
             cell.imgHead.image = headImage
             cell.selectedBackgroundView = UIView(frame: cell.frame)
-            cell.selectedBackgroundView.backgroundColor = selectColor
+            cell.selectedBackgroundView!.backgroundColor = selectColor
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("leadrowcell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("leadrowcell", forIndexPath: indexPath) 
             cell.textLabel?.text = leadSource![indexPath.row - 1].title
             cell.selectedBackgroundView = UIView(frame: cell.frame)
-            cell.selectedBackgroundView.backgroundColor = selectColor
+            cell.selectedBackgroundView!.backgroundColor = selectColor
             return cell
         }
     }
