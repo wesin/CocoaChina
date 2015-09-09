@@ -42,8 +42,9 @@ class FavoriteCenter: NSObject {
     func deleteFavoriteByIndex(index:Int) {
         let list = getFavoriteList()
         let item = list[index] as! Favorite
-//        item.beginWriting().delete().endWriting()
-        item.delete()
+        
+        item.beginWriting().delete().endWriting()
+        
     }
     
 }

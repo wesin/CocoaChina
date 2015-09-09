@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class BGViewController:UIViewController,WKScriptMessageHandler {
+class BGViewController:UIViewController,WKScriptMessageHandler,WKNavigationDelegate {
     
     @IBOutlet weak var imgBG: UIImageView!
     
@@ -39,6 +39,11 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
     
     deinit{
         print("bgview deinit")
+    }
+    
+    //MARK:WKNavigationDelegate
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        print("finish load")
     }
     
     //MARK:WKScriptMessageHandler
@@ -77,6 +82,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         self.presentViewController(mainView!, animated: true, completion: nil)
     }
     
+    
     /**
     获取数据源
     
@@ -87,6 +93,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler {
         let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
         config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
+        webView?.navigationDelegate = self
 //                webView.navigationDelegate = self
         //        webView.loadRequest(NSURLRequest(URL: ))
         webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))

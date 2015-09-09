@@ -127,7 +127,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
 //                    var tempData = [DataContent]()
                     if key == "content" {
                         if let data = value as? [[String:AnyObject]] {
-                            data.map(){
+                            _ = data.map(){
                                 self.dataSource?.append(DataContent(contentObj: $0))
                             }
                             if data.count > 0 {

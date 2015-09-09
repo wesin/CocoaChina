@@ -16,5 +16,6 @@
 #import "MJRefresh.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "Bugtags/Bugtags.h"
 
 #endif

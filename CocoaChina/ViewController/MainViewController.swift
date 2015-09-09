@@ -153,7 +153,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
             if let contentDic = message.body as? [String:[[String:AnyObject]]] {
                 for (key,value) in contentDic {
                     var tempData = [DataContent]()
-                    value.map(){
+                     _ = value.map(){
                         tempData.append(DataContent(contentObj: $0))
                     }
                     switch key {
@@ -182,9 +182,13 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
     - parameter type:	文件后缀名
     */
     func getDataSource() {
-//        webView?.configuration.userContentController.removeScriptMessageHandlerForName(MessageHandler.MainHandler.rawValue)
-//        webView?.removeFromSuperview()
-//        webView = nil
+        if pageType == ListType.Favorite {
+            PageDataCenter.instance.getFavoriteList()
+            dataSource = PageDataCenter.instance.dataAll[pageType]
+            refreshView()
+            header?.endRefreshing()
+            return
+        }
         if webView == nil {
             let config = CocoaCommon.getConfig("alldata", extend: "js", injection: WKUserScriptInjectionTime.AtDocumentEnd)
             config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)

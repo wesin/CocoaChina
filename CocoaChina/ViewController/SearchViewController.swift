@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
+class SearchViewController: ListCommonViewController,WKScriptMessageHandler,WKNavigationDelegate {
 
     @IBOutlet weak var tableResult: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -100,6 +100,11 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
         return 100
     }
     
+    //MARK:WKNavigationDelegate
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        print("finish search")
+    }
+    
     //MARK:WKScriptMessageHandler
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         if message.name == MessageHandler.SearchHandler.rawValue {
@@ -110,7 +115,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
                             if lastKeyWords != searchBar.text {
                                 self.dataSource!.removeAll(keepCapacity: false)
                             }
-                            data.map(){
+                            _ = data.map(){
                                 self.dataSource!.append(DataContent(contentObj: $0))
                             }
                             tableResult.reloadData()
@@ -146,10 +151,11 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler {
             let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
             config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.SearchHandler.rawValue)
             webView = WKWebView(frame: CGRectZero, configuration: config)
-            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet())!)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+            webView?.navigationDelegate = self
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
             self.view.addSubview(webView!)
         } else {
-            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet())!)!))
+            webView?.loadRequest(NSURLRequest(URL: NSURL(string: urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)!))
         }
     }
     
