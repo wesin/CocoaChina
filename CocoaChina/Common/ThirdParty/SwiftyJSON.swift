@@ -186,9 +186,10 @@ extension JSON : Swift.SequenceType {
             let array_ = object as! [AnyObject]
             var generate_ = array_.generate()
             var index_: Int = 0
-            return anyGenerator {
+            return AnyGenerator {
                 if let element_: AnyObject = generate_.next() {
-                    return ("\(index_++)", JSON(element_))
+                    index_ += 1
+                    return ("\(index_)", JSON(element_))
                 } else {
                     return nil
                 }
@@ -196,7 +197,7 @@ extension JSON : Swift.SequenceType {
         case .Dictionary:
             let dictionary_ = object as! [String : AnyObject]
             var generate_ = dictionary_.generate()
-            return anyGenerator {
+            return AnyGenerator {
                 if let (key_, value_): (String, AnyObject) = generate_.next() {
                     return (key_, JSON(value_))
                 } else {
@@ -204,7 +205,7 @@ extension JSON : Swift.SequenceType {
                 }
             }
         default:
-            return anyGenerator {
+            return AnyGenerator {
                 return nil
             }
         }
@@ -1337,14 +1338,14 @@ extension JSON {
     @available(*, unavailable, renamed="uInt")
     public var unsignedInteger: Int? {
         get {
-            return self.number?.unsignedIntegerValue
+            return self.number?.integerValue
         }
     }
     
     @available(*, unavailable, renamed="uIntValue")
     public var unsignedIntegerValue: Int {
         get {
-            return self.numberValue.unsignedIntegerValue
+            return self.numberValue.integerValue
         }
     }
 }

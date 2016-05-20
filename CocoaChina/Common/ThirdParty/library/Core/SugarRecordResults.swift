@@ -113,7 +113,9 @@ public class SRResultsGenerator: GeneratorType {
         if (nextIndex < 0) {
             return nil
         }
-        return self.results[nextIndex--]
+        let tmpIndex = nextIndex
+        nextIndex -= 1
+        return self.results[tmpIndex]
     }
 }
 

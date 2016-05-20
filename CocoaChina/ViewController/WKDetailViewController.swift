@@ -23,12 +23,12 @@ class WKDetailViewController:UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         let config = CocoaCommon.getConfig("detail", extend: "js", injection:WKUserScriptInjectionTime.AtDocumentEnd)
         wkView = WKWebView(frame: CGRectZero, configuration: config)
-        wkView?.loadRequest(NSURLRequest(URL: NSURL(string: url)!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
+        wkView?.loadRequest(NSURLRequest(URL: NSURL(string: getCurrentUrl())!, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 60*60))
         wkView?.navigationDelegate = self
         wkView?.userInteractionEnabled = true
         self.view.insertSubview(wkView!, belowSubview: progress)
         
-        swipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("turnBack"))
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(WKDetailViewController.turnBack))
         swipeGesture?.direction = UISwipeGestureRecognizerDirection.Right
         wkView?.addGestureRecognizer(swipeGesture!)
 
@@ -43,6 +43,7 @@ class WKDetailViewController:UIViewController, WKNavigationDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        CommonFunc.changeUserAgent(false)
         super.viewDidDisappear(animated)
         wkView?.removeObserver(self, forKeyPath: "estimatedProgress")
     }
@@ -66,6 +67,14 @@ class WKDetailViewController:UIViewController, WKNavigationDelegate {
                 progress.hidden = false
             }
         }
+    }
+    
+    private func getCurrentUrl() -> String {
+        let strs = NSString(string: url).componentsSeparatedByString("/")
+        let name = strs[strs.count - 1]
+        let strs2 = name.componentsSeparatedByString(".")
+        print(strs2[0])
+        return String.localizedStringWithFormat(mobileUrl, strs2[0])
     }
 
 }

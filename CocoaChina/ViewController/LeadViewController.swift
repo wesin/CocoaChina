@@ -27,7 +27,7 @@ class LeadViewController:UIViewController, UITableViewDataSource, UITableViewDel
         leadSource = [("ios","iOS开发"),("swift","Swift"),("appstore","App Store研究"),("game","游戏开发"),("review","应用评测"),("apple","苹果相关"),("design","产品设计"),("market","营销推广"),("cocos","Cocos引擎"),("industry","业界动态"),("webapp","WebApp"),("programmer","程序人生")]
         tableLead.tableFooterView = UIView(frame: CGRectZero)
         headImage = UIImage(contentsOfFile: PageDataCenter.instance.imageHeadName.path!)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("changehead:"), name: "changehead", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LeadViewController.changehead(_:)), name: "changehead", object: nil)
         selectColor = UIColor(red: 65/255, green: 174/255, blue: 247/255, alpha: 1)
     }
     

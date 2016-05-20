@@ -9,6 +9,7 @@
 import Foundation
 
 let mainUrl = "http://www.cocoachina.com"
+let mobileUrl = "http://www.cocoachina.com/cms/wap.php?action=article&id=%@"
 
 class PageDataCenter:NSObject {
     

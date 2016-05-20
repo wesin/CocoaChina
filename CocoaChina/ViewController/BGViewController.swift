@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+var standUserAgent = ""
+let newUserAgent = "wesin"
 class BGViewController:UIViewController,WKScriptMessageHandler,WKNavigationDelegate {
     
     @IBOutlet weak var imgBG: UIImageView!
@@ -23,7 +25,8 @@ class BGViewController:UIViewController,WKScriptMessageHandler,WKNavigationDeleg
     var hud:MBProgressHUD?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getStandUserAgent()
+        CommonFunc.changeUserAgent(false)
         imgBG.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("launchbg", ofType: "jpg")!)
 
 
@@ -90,6 +93,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler,WKNavigationDeleg
     - parameter type:	文件后缀名
     */
     func getDataSource(name:String, type:String, urlStr:String) {
+        
         let config = CocoaCommon.getConfig(name, extend: type, injection: WKUserScriptInjectionTime.AtDocumentEnd)
         config.userContentController.addScriptMessageHandler(LeakAvoider(delegate: self), name: MessageHandler.MainHandler.rawValue)
         webView = WKWebView(frame: CGRectZero, configuration: config)
@@ -112,6 +116,12 @@ class BGViewController:UIViewController,WKScriptMessageHandler,WKNavigationDeleg
         }
     }
     
+    func getStandUserAgent() {
+        let hehwebView = UIWebView(frame: CGRectZero)
+        standUserAgent = hehwebView.stringByEvaluatingJavaScriptFromString("navigator.userAgent")!
+        print(standUserAgent)
+    }
+    
     func loadSource() {
         
         getDataSource("alldata", type: "js", urlStr: mainUrl)
@@ -123,7 +133,7 @@ class BGViewController:UIViewController,WKScriptMessageHandler,WKNavigationDeleg
     */
     func addContinue() {
         canTap = true
-        tapGesture = UITapGestureRecognizer(target: self, action: Selector("continueView"))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(BGViewController.continueView))
         tapGesture?.numberOfTapsRequired = 1
         tapGesture?.numberOfTouchesRequired = 1
         imgBG.addGestureRecognizer(tapGesture!)

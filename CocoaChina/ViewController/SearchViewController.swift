@@ -32,7 +32,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler,WKNa
         tableResult.registerNib(UINib(nibName: "SearchRowCell", bundle: nil), forCellReuseIdentifier: "searchrowcell")
         tableResult.tableFooterView = UIView(frame: CGRectZero)
         
-        footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("getNextData"))
+        footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(SearchViewController.getNextData))
         tableResult.footer = footer
     }
     
@@ -73,7 +73,7 @@ class SearchViewController: ListCommonViewController,WKScriptMessageHandler,WKNa
         hud?.labelText = "搜索中..."
         hud?.show(true)
         
-        timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
+        timer = NSTimer(timeInterval: 15, target: self, selector: #selector(SearchViewController.stopLoading), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
         let url = String.localizedStringWithFormat(searchUrl, keyWord!)
         getDataSource("search", type: "js", urlStr: url)

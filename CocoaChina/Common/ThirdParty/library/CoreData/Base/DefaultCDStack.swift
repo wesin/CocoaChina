@@ -573,7 +573,7 @@ public extension NSManagedObjectContext
     Add observer of self to check when is going to save to ensure items are saved with permanent IDs
     */
     func addObserverToGetPermanentIDsBeforeSaving() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("contextWillSave:"), name: NSManagedObjectContextWillSaveNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NSManagedObjectContext.contextWillSave(_:)), name: NSManagedObjectContextWillSaveNotification, object: self)
     }
     
     /**
@@ -622,10 +622,10 @@ public extension NSManagedObjectContext
     func startObserving(context: NSManagedObjectContext, inMainThread mainThread: Bool) {
         SugarRecordLogger.logLevelVerbose.log("\(self) context now observing the context \(context)")
         if mainThread {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "mergeChangesInMainThread:", name: NSManagedObjectContextDidSaveNotification, object: context)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NSManagedObjectContext.mergeChangesInMainThread(_:)), name: NSManagedObjectContextDidSaveNotification, object: context)
         }
         else {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "mergeChanges:", name: NSManagedObjectContextDidSaveNotification, object: context)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NSManagedObjectContext.mergeChanges(_:)), name: NSManagedObjectContextDidSaveNotification, object: context)
         }
     }
     

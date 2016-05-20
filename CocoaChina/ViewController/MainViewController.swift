@@ -43,7 +43,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         tableMain.registerNib(UINib(nibName: "FavoriteRowCell", bundle: nil), forCellReuseIdentifier: "favoriterowcell")
         dataSource = PageDataCenter.instance.dataAll[ListType.Main]
         
-        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("getDataSource"))
+        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(MainViewController.getDataSource))
         header?.lastUpdatedTimeLabel!.hidden = true
         header?.setTitle("下拉刷新", forState: MJRefreshStateIdle)
         header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
@@ -54,6 +54,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        CommonFunc.changeUserAgent(false)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -66,7 +67,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         if converView == nil {
             converView = UIView(frame: self.view.bounds)
             converView?.backgroundColor = UIColor.blackColor()
-            let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideLeading"))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MainViewController.hideLeading))
             tapGesture.numberOfTapsRequired = 1
             tapGesture.numberOfTouchesRequired = 1
             converView?.addGestureRecognizer(tapGesture)
@@ -83,7 +84,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
         self.view.addSubview(leadView!.view)
 
         if leftGesture == nil {
-            leftGesture = UISwipeGestureRecognizer(target: self, action: Selector("hideLeading"))
+            leftGesture = UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.hideLeading))
             leftGesture?.direction = UISwipeGestureRecognizerDirection.Left
         }
         UIView.animateWithDuration(0.3, animations: {
@@ -91,7 +92,7 @@ class MainViewController:ListCommonViewController, HPSwitchDelegate,WKScriptMess
             self.converView?.alpha = 0.5
             }, completion: {
             (Bool) -> Void in
-                self.leadView?.view.addGestureRecognizer(leftGesture!)
+                self.leadView?.view.addGestureRecognizer(self.leftGesture!)
         })
     }
     

@@ -68,7 +68,7 @@ class WesinDatePicker: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
             btnOK?.setImage(UIImage(named: "ok")!, forState: UIControlState.Normal)
 //            btnOK?.setTitle("确定", forState: UIControlState.Normal)
 //            btnOK?.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            btnOK?.addTarget(self, action: Selector("btnClick:"), forControlEvents: UIControlEvents.TouchUpInside)
+            btnOK?.addTarget(self, action: #selector(WesinDatePicker.btnClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.addSubview(btnOK!)
             btnOK?.frame = CGRect(x: bounds.width - buttonWidth - margin, y: margin, width: buttonWidth, height: buttonHeight)
             

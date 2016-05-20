@@ -140,4 +140,10 @@ class CommonFunc:NSObject {
     func checkPhoneNum(num:String) -> Bool {
         return true
     }
+    
+    static func changeUserAgent(boolLocal:Bool) {
+        let agent = boolLocal ? standUserAgent : newUserAgent
+        let dic = ["UserAgent":agent]
+        NSUserDefaults.standardUserDefaults().registerDefaults(dic)
+    }
 }

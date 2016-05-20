@@ -19,19 +19,19 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navItem.title = content?.title
-        
-        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: Selector("share"))
+
+        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(DetailViewController.share))
         rightButton.tintColor = UIColor.whiteColor()
-        let rightButton2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: Selector("store:"))
+        let rightButton2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: #selector(DetailViewController.store(_:)))
         rightButton2.tintColor = UIColor.whiteColor()
         navItem.rightBarButtonItems = [rightButton, rightButton2]
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if content!.url.hasPrefix("/") {
-            content?.url = mainUrl + content!.url
-        }
+//        if content!.url.hasPrefix("/") {
+//            content?.url = mainUrl + content!.url
+//        }
         CalculateFunc.beginPage("Detail:" + content!.url)
     }
     
@@ -46,9 +46,9 @@ class DetailViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let webView = segue.destinationViewController as! WKDetailViewController
-        if content!.url.hasPrefix("/") {
-            content?.url = mainUrl + content!.url
-        }
+//        if content!.url.hasPrefix("/") {
+//            content?.url = mainUrl + content!.url
+//        }
         webView.url = content!.url
     }
     

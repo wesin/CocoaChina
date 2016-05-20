@@ -11,10 +11,8 @@ import UIKit
 class CalculateFunc: NSObject {
     
     static func beginPage(pageName:String) {
-        MobClick.beginLogPageView(pageName)
     }
     
     static func endPage(pageName:String) {
-        MobClick.endLogPageView(pageName)
     }
 }

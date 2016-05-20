@@ -167,8 +167,7 @@ public class SugarRecordCDContext: SugarRecordContext
     public func deleteObjects(objects: SugarRecordResults) -> ()
     {
 //        var objectsDeleted: Int = 0
-        
-        for (var index = 0; index < Int(objects.count) ; index++) {
+        for index in 0..<Int(objects.count) {
             let object: AnyObject! = objects[index]
             if (object != nil) {
                 let _ = deleteObject(object)

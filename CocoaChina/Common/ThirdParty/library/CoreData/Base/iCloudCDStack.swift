@@ -348,13 +348,13 @@ public class iCloudCDStack: DefaultCDStack
         SugarRecordLogger.logLevelVerbose.log("Adding observers to detect changes on iCloud")
         
         // Store will change
-        notificationCenter.addObserver(self, selector: Selector("storesWillChange:"), name: NSPersistentStoreCoordinatorStoresWillChangeNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(iCloudCDStack.storesWillChange(_:)), name: NSPersistentStoreCoordinatorStoresWillChangeNotification, object: nil)
         
         // Store did change
-        notificationCenter.addObserver(self, selector: Selector("storeDidChange:"), name: NSPersistentStoreCoordinatorStoresDidChangeNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(iCloudCDStack.storeDidChange(_:)), name: NSPersistentStoreCoordinatorStoresDidChangeNotification, object: nil)
 
         // Did import Ubiquituous Content
-        notificationCenter.addObserver(self, selector: Selector("persistentStoreDidImportUbiquitousContentChanges:"), name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(iCloudCDStack.persistentStoreDidImportUbiquitousContentChanges(_:)), name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: nil)
     }
 
     /**

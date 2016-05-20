@@ -65,7 +65,7 @@ class HPSwitch: UIView {
             drawSelectItem(lastSelectIndex)
             
             if allowClick {
-                let gesture = UITapGestureRecognizer(target: self, action: Selector("click:"))
+                let gesture = UITapGestureRecognizer(target: self, action: #selector(HPSwitch.click(_:)))
                 gesture.numberOfTapsRequired = 1
                 gesture.numberOfTouchesRequired = 1
                 self.addGestureRecognizer(gesture)
@@ -92,7 +92,7 @@ class HPSwitch: UIView {
                 separateView.textAlignment = .Center
                 separateView.textColor = fontColor
             }
-            index++
+            index += 1
         }
     }
     

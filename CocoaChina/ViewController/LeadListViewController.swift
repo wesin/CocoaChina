@@ -50,24 +50,24 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
         tableList.registerNib(UINib(nibName: "ContentListRowCell", bundle: nil), forCellReuseIdentifier: "contentlistrowcell")
         dataSource = [DataContent]()
         
-        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("getDataSource"))
+        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(LeadListViewController.getDataSource))
         header?.lastUpdatedTimeLabel!.hidden = true
         header?.setTitle("下拉刷新", forState: MJRefreshStateIdle)
         header?.setTitle("加载中...", forState: MJRefreshStateRefreshing)
         header?.setTitle("松开结束", forState: MJRefreshStatePulling)
         tableList.header = header
         
-        footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("getNextData"))
+        footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(LeadListViewController.getNextData))
         tableList.footer = footer
         
         hud = MBProgressHUD(view: self.view)
         self.view.addSubview(hud!)
         hud?.labelText = "刷新中..."
         hud?.show(true)
-        timer = NSTimer(timeInterval: 15, target: self, selector: Selector("stopLoading"), userInfo: nil, repeats: false)
+        timer = NSTimer(timeInterval: 15, target: self, selector: #selector(LeadListViewController.stopLoading), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
         
-        let rightSwiper = UISwipeGestureRecognizer(target: self, action: Selector("back:"))
+        let rightSwiper = UISwipeGestureRecognizer(target: self, action: #selector(LeadListViewController.back(_:)))
         rightSwiper.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(rightSwiper)
         
@@ -75,6 +75,7 @@ class LeadListViewController:ListCommonViewController,WKScriptMessageHandler {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        CommonFunc.changeUserAgent(false)
         CalculateFunc.beginPage("List:" + url)
     }
     
